@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express'
 import ReactDOM from 'react-dom/server';
 import { Header } from "../shared/Header";
 import { indexTemplate } from './indexTemplate';
