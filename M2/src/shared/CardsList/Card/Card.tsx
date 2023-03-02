@@ -6,9 +6,11 @@ import { Menu } from './Menu';
 import { Controls } from './Controls'; 
 
 export function Card() {
+
+	
   return (
       <li className={styles.card}>
-		<TextContent/>
+		<TextContent userNameProp='usersss' />
 		<Preview/>	
 		<Menu/>	
 		<Controls/>
