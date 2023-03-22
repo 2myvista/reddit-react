@@ -1,13 +1,15 @@
 import React from 'react';
 import styles from './textcontent.css';
 
+
 interface ICardProps {
 	userNameProp:string;
 	published?: number;
 }
 
-export function TextContent({userNameProp, published=10}:ICardProps) {
+export function TextContent({userNameProp, published=10 }:ICardProps) {
   return (
+	
 		<div className={styles.textContent} >
 			<div className={styles.metaData} >
 				<div className={styles.userLink} >
