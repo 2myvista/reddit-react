@@ -1,4 +1,4 @@
-
+/*
 import preventDefault from "./utils/react/preventDefault";
 import stopPropagation from "./utils/react/stopPropagation";
 import { getValue }  from "./utils/react/pickFromSyntethicEvent";
@@ -127,4 +127,4 @@ function NotStandartLink(props: any) {
 	);
 }
 
-
+*/
