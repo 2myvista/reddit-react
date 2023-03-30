@@ -1,8 +1,8 @@
-/*
-import preventDefault from "./utils/react/preventDefault";
-import stopPropagation from "./utils/react/stopPropagation";
-import { getValue }  from "./utils/react/pickFromSyntethicEvent";
-import { getChecked }  from "./utils/react/pickFromSyntethicEvent";
+
+import preventDefault from "../src/utils/react/preventDefault";
+import stopPropagation from "../src/utils/react/stopPropagation";
+import { getValue }  from "../src/utils/react/pickFromSyntethicEvent";
+import { getChecked }  from "../src/utils/react/pickFromSyntethicEvent";
 
 // каррирование вычисление аргументов функции по мере того как мы ее (функцию) вызываем
 
@@ -127,4 +127,4 @@ function NotStandartLink(props: any) {
 	);
 }
 
-*/
+

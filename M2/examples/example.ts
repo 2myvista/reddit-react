@@ -1,4 +1,4 @@
-/*
+
 const str = 'string';
 const num = 2;
 const nan = NaN;
@@ -140,4 +140,3 @@ function neverFn ():never {
 const someV = neverFn();
 
 
-*/

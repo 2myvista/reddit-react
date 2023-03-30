@@ -3,6 +3,9 @@ import styles from './menu.css';
 import { Dropdown } from '../../../Dropdown';
 import { GenericList } from '../../../../shared/GenericList';
 import {merge} from './../../../../utils/js/merge';
+import { MenuIcon } from '../../../Icons/MenuIcon';
+import { Text, EColor } from '../../../Text';
+import {MenuItemsList} from './MenuItemsList';
 
 interface ImenuList {
 	id:	string;
@@ -27,20 +30,24 @@ export function Menu({menuList}:ImenuListProps) {
   return (
 		<div className={styles.menu} >
 				<Dropdown 
-					onClose={()=>{console.log('D closed')}}
+					/* onClose={()=>{console.log('D closed')}}
 					onOpen={()=>{console.log('opened')}}
-					/* isOpen={true} */
+					isOpen={true} */
 					button={<button className={styles.menuButton}>
-					<svg width="5" height="20" viewBox="0 0 5 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="2.5" cy="2.5" r="2.5" fill="#D9D9D9"/>
-						<circle cx="2.5" cy="10" r="2.5" fill="#D9D9D9"/>
-						<circle cx="2.5" cy="17.5" r="2.5" fill="#D9D9D9"/>
-					</svg>
+						<MenuIcon/>
 				</button>}
 				>
-				<ul>
+					<div className={styles.dropdown}>
+					<MenuItemsList postId="12345"/>
+						<button className={styles.closeButton}>
+							<Text mobileSize={12} size={14} color={EColor.gray66}>
+								CloseButton
+							</Text>
+						</button>
+					</div>
+				{/* <ul>
 					<GenericList list={menuList.map(merge({onClick: handleMenuClick}))}/>
-				</ul>
+				</ul> */}
 				</Dropdown>
 		</div>	
   );

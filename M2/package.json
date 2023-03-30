@@ -7,11 +7,12 @@
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development node ./bin/dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "myvista",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.3.2",
     "express": "^4.18.2",
     "nodemon": "^2.0.20",
     "react": "^17.0.1",
@@ -20,11 +21,17 @@
   },
   "devDependencies": {
     "@hot-loader/react-dom": "^17.0.2",
+    "@types/classnames": "^2.3.1",
+    "@types/enzyme": "^3.10.12",
     "@types/jest": "^29.4.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "3.4.2",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.4.3",
     "less": "^3.13.1",
     "less-loader": "^5.0.0",

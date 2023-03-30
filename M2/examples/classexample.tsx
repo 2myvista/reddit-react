@@ -1,4 +1,4 @@
-/*
+
 class Constructor {
     public field: number = 123;
     constructor(arg: number) {
@@ -72,4 +72,3 @@ class MyComponent extends React.Component<{prop1: number},{state1: string}> {
         )
     }
 }
-*/
