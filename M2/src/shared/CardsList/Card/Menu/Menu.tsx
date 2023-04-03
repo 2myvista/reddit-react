@@ -3,7 +3,7 @@ import styles from './menu.css';
 import { Dropdown } from '../../../Dropdown';
 import { GenericList } from '../../../../shared/GenericList';
 import {merge} from './../../../../utils/js/merge';
-import { MenuIcon } from '../../../Icons/MenuIcon';
+import { MenuIcon } from '../../../Icon/MenuIcon';
 import { Text, EColor } from '../../../Text';
 import {MenuItemsList} from './MenuItemsList';
 
