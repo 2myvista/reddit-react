@@ -12,6 +12,11 @@ app.get('/', (req, res)=>{
         indexTemplate(ReactDOM.renderToString(App()),)
     );
 });
+app.get('/auth', (req, res)=>{
+    res.send(
+        indexTemplate(ReactDOM.renderToString(App()),)
+    );
+});
 
 app.listen(3000, () =>{
     console.log('server started on 3000 port http://localhost:3000');
