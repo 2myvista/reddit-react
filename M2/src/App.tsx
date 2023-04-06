@@ -8,7 +8,6 @@ import { CardsList } from './shared/CardsList';
 import { TestContent } from './shared/CardsList/Card/TestContent';
 
 function AppComponent() {
- 
 	const upperCase = (str:string):string => {console.log(str); return str.toUpperCase()};
 	const exclaim = (str:string):string => `${str}!`;
 	const repeat = (str:string):string => `${str} `.repeat(3);

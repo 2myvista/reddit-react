@@ -11,7 +11,7 @@ export function MenuItemsList({postId}: IMenuItemsListProps) {
 	return (
 		<ul className={styles.menuItemsList}>
 			<li className={styles.menuItem} onClick={()=>console.log(postId)}>
-				<Icon name='hide' /* name={EIcon.hide} *//>
+				<Icon name='avatar' size={16} /* name={EIcon.hide} *//>
 				<Text size={12} color={EColor.gray99}>Скрыть</Text>
 			</li>
 			<div className={styles.divider}/>
