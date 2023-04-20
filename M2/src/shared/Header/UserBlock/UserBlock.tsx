@@ -22,7 +22,7 @@ export function UserBlock({avatarSrc, userName}:IUserBlockProps) {
 
 		<div className={styles.username}>
 			<Break size={12}/>
-			<Text size={14} color={userName? EColor.black : EColor.gray99}>{userName || 'неизвестен'}</Text>
+			<Text size={14} color={userName? EColor.black : EColor.gray99}>{userName || 'Аноним'}</Text>
 		</div>
 	</a>
   );
