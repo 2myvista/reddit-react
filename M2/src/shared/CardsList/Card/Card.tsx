@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './card.css';
 import { TextContent } from './TextContent'; 
 import { Preview } from './Preview'; 
 import { Menu } from './Menu'; 
 import { Controls } from './Controls';
 import { generateRandomString } from '../../../utils/react/generateRandomIndex';
+import { timeDiff } from '../../../utils/js/timeDiff';
+
+interface IPostsItems {
+	id:	string;
+	author: string;
+	title: string;
+	image: string;
+	permalink: string;
+	selftext?: string;
+	selftext_html?: string;
+	avatar: string;
+	created: number;
+}
 
 
-export function Card() {
-
-	const userName ='userName';
+export function Card({id, author, title, image, permalink, avatar, created }:IPostsItems) {
+	
+	const dataStr:any= timeDiff(created*1000);
+	
 	const MENULIST = [
 		{As: 'li' as const, text: 'Комментарии', href: 'url1'},
 		{As: 'li' as const, text: 'Поделиться', href: 'url2'},
@@ -17,11 +31,11 @@ export function Card() {
 	].map((item)=>({...item, id: generateRandomString() }))
 		
 	return (
-			<li className={styles.card}>
-		<TextContent  published={7} userNameProp={userName} />
-		<Preview/>	
-	 	<Menu menuList={MENULIST}/>
-		<Controls/>
-			</li>
+		<li className={styles.card} key={id}>
+			<TextContent  published={dataStr.summary} title={title} userNameProp={author} avatar={avatar} permalink={permalink} />
+			<Preview image={image} />	
+			<Menu menuList={MENULIST}/>
+			<Controls/>
+		</li>
 	);
 }
