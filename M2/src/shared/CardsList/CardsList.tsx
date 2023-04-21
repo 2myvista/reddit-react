@@ -6,13 +6,13 @@ import { postsContext } from '../context/postsContext';
 
 export function CardsList() {
 	const {postsData} = useContext(postsContext);
-	console.log(postsData);
+	//console.log(postsData);
  
 	return (
 		<ul className={styles.cardsList}>
 		{postsData && postsData.map(
 			(item:any)=>(
-				<Card id={item.data.id} author={item.data.author} image={item.data.thumbnail} title={item.data.title} avatar={item.data.sr_detail.icon_img} created={item.data.created} permalink={item.data.permalink} />
+				<Card key={item.data.id} id={item.data.id} author={item.data.author} image={item.data.thumbnail} title={item.data.title} avatar={item.data.sr_detail.icon_img} created={item.data.created} permalink={item.data.permalink} />
 		)
 		)}   
 		</ul> 

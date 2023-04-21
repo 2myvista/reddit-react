@@ -11,8 +11,8 @@
 	.card {
 		background-color: transparent;
 		flex-flow: row nowrap;
-		/*max-height: 107px;*/
-		padding: 5px 40px;
+		/*max-height: 147px;*/
+		padding: 2px 40px;
 	}
 
 	.card>* {
