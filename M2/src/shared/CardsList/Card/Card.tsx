@@ -31,7 +31,7 @@ export function Card({id, author, title, image, permalink, avatar, created }:IPo
 	].map((item)=>({...item, id: generateRandomString() }))
 		
 	return (
-		<li className={styles.card} key={id}>
+		<li className={styles.card}>
 			<TextContent  published={dataStr.summary} title={title} userNameProp={author} avatar={avatar} permalink={permalink} />
 			<Preview image={image} />	
 			<Menu menuList={MENULIST}/>
