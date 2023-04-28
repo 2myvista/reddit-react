@@ -24,7 +24,7 @@ export function TextContent({userNameProp, title, published=10, avatar, permalin
 				</div>
 				<span className={styles.createdAt}>
 					<span className={styles.publishedLabel}>опубликовано </span>
-					{published}назад</span>
+					{published}</span>
 			</div>
 			<h2 className={styles.title}>
 				<a target="_blank" href={url} className={styles.postLink}>{title}</a>	

@@ -3,14 +3,14 @@ import styles from './testcontent.css';
 
 import { Dropdown } from '../../../Dropdown';
 import { CardsList } from '../../CardsList';
-import { GenericList } from '../../../GenericList';
-import { generateRandomString } from '../../../../utils/react/generateRandomIndex';
+import { GenericList } from '../../../UI/GenericList';
+import { generateRandomString, generateId } from '../../../../utils/react/generateRandomIndex';
 import { merge } from '../../../../utils/js/merge';
 import { stopPropagation } from '../../../../utils/react/stopPropagation';
 import { preventDefault } from '../../../../utils/react/preventDefault';
 import { MyHooks, useIsMounted } from '../../../../../examples/HooksExample';
 import { getValue } from '../../../../utils/react/pickFromSyntethicEvent';
-import { Break } from '../../../Break';
+import { Break } from '../../../UI/Break';
 import { Text } from '../../../Text';
 import { EColor } from '../../../Text';
 
@@ -18,9 +18,10 @@ const LIST = [
 	{As: 'li' as const, text: 'some text'},
 	{As: 'li' as const, text: 'some2 text'},
 	{As: 'li' as const, text: 'some3 4text'},
-].map((item) => ({...item,id: generateRandomString()}))
-//].map(generateId)
-//console.log(LIST);
+	{As: 'li' as const, text: 'some4 5text'},
+//].map((item) => ({...item,id: generateRandomString()}))
+].map(generateId)
+console.log(LIST);
 
 const SECTIONS = [
 	{text: 'КомментарииS_1 ', href: 'url1', userId: 23},
@@ -34,6 +35,7 @@ const SECTIONS = [
 export function TestContent() {
 
 	const [list, setList] = React.useState(LIST);
+//console.log(LIST);
 
 	const handleItemClick = (id: string) => {
 		console.log(id);

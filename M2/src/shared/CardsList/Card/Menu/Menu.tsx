@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './menu.css';
 import { Dropdown } from '../../../Dropdown';
-import { GenericList } from '../../../../shared/GenericList';
+import { GenericList } from '../../../UI/GenericList';
 import {merge} from './../../../../utils/js/merge';
-import { MenuIcon } from '../../../Icon/MenuIcon';
+import { MenuIcon } from '../../../UI/Icon/MenuIcon';
 import { Text, EColor } from '../../../Text';
 import {MenuItemsList} from './MenuItemsList';
 

@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { Card } from './Card';
 import styles from './cardslist.css';
+import { Card_ } from './testCard';
+//import { TextContent } from './Card/TextContent';
+import { TestContent } from './testCard/TestContent';
 
 import { postsContext } from '../context/postsContext';
 
@@ -14,6 +17,12 @@ export function CardsList() {
 			(item:any)=>(
 				<Card key={item.data.id} id={item.data.id} author={item.data.author} image={item.data.thumbnail} title={item.data.title} avatar={item.data.sr_detail.icon_img} created={item.data.created} permalink={item.data.permalink} />
 		)
+		)}
+		{!postsData && (
+			<div>
+				<Card_ />
+				{/* <TestContent/> */}
+			</div>
 		)}   
 		</ul> 
 	);
