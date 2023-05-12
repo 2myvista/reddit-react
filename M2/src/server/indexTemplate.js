@@ -12,7 +12,7 @@ export const indexTemplate =(content, token) => `
     </head>
     <body>
         <div id="react_root">${content}</div>
-        <div id="modal_root"></div>
+        <div id="modal_root" ref="modal_ref"></div>
     </body>
 </html>
 `;

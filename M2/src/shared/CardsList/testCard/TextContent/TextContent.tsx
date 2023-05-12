@@ -4,11 +4,13 @@ import { Post } from '../../../Post';
 
 
 interface ICardProps {
+	id:string;
+	subreddit: string;
 	userNameProp:string;
 	published?: string;
 }
 
-export function TextContent({userNameProp, published='два дня назад' }:ICardProps) {
+export function TextContent({id, subreddit, userNameProp, published='два дня назад' }:ICardProps) {
 	const [isModalOpened, setIsModalOpened]= useState(false);
 	return (
 	
@@ -23,10 +25,10 @@ export function TextContent({userNameProp, published='два дня назад' 
 					{published}</span>
 			</div>
 			<h2 className={styles.title}>
-				<a href="#post-url" onClick={()=>{ setIsModalOpened(true); }} className={styles.postLink}> таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</a>	
+				<a href="#post-url" onClick={()=>{ setIsModalOpened(true); }} className={styles.postLink}>{id} таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</a>	
 			</h2>
 			{isModalOpened && (
-				<Post onClose={()=>{setIsModalOpened(false);}}/>
+				<Post subreddit={subreddit} title='' selftext='' id={id} onClose={()=>{setIsModalOpened(false);}}/>
 			)}	
 		</div>	
   );

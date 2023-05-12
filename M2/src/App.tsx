@@ -36,7 +36,9 @@ function AppComponent() {
 					<Header/>
 					{/* <Content> */}
 					<PostsContextProvider>
+						
 						<CardsList />
+						
 					</PostsContextProvider>
 					{/* </Content> */}
 					{/* <TestContent /> */}

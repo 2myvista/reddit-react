@@ -11,18 +11,20 @@ moment.locale('ru');
 
 interface IPostsItems {
 	id:	string;
+	subreddit: string;
+
 	author: string;
 	title: string;
 	image: string;
 	permalink: string;
-	selftext?: string;
+	selftext: string;
 	selftext_html?: string;
 	avatar: string;
 	created: number;
 }
 
 
-export function Card({id, author, title, image, permalink, avatar, created }:IPostsItems) {
+export function Card({id, subreddit, author, title, image, permalink, avatar, created, selftext }:IPostsItems) {
 	
 	const dataStr:any= moment(created*1000).fromNow();
 	
@@ -34,7 +36,7 @@ export function Card({id, author, title, image, permalink, avatar, created }:IPo
 		
 	return (
 		<li className={styles.card}>
-			<TextContent  published={dataStr} title={title} userNameProp={author} avatar={avatar} permalink={permalink} />
+			<TextContent subreddit={subreddit} id={id} selftext={selftext}  published={dataStr} title={title} userNameProp={author} avatar={avatar} permalink={permalink} />
 			<Preview image={image} />	
 			<Menu menuList={MENULIST}/>
 			<Controls/>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './menu.css';
-import { Dropdown } from '../../../Dropdown';
+import { Dropdown } from '../../../UI/Dropdown';
 import { GenericList } from '../../../UI/GenericList';
 import {merge} from './../../../../utils/js/merge';
 import { MenuIcon } from '../../../UI/Icon/MenuIcon';
@@ -30,12 +30,9 @@ export function Menu({menuList}:ImenuListProps) {
   return (
 		<div className={styles.menu} >
 				<Dropdown 
-					/* onClose={()=>{console.log('D closed')}}
-					onOpen={()=>{console.log('opened')}}
-					isOpen={true} */
 					button={<button className={styles.menuButton}>
 						<MenuIcon/>
-				</button>}
+					</button>}
 				>
 					<div className={styles.dropdown}>
 					<MenuItemsList postId="12345"/>
@@ -52,3 +49,4 @@ export function Menu({menuList}:ImenuListProps) {
 		</div>	
   );
 }
+

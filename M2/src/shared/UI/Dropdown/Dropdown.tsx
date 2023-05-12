@@ -3,39 +3,41 @@ import ReactDOM from 'react-dom';
 import styles from './dropdown.css';
 
 interface IDropdownProps {
+	button: React.ReactNode;    // то, на что будем нажимать
 	children: React.ReactNode;  // то, что будем выводить
-	//onOpen?: () => void;		// callback на открытие
+	isOpen?: boolean;			// для контроля начального состояния  открыт либо закрыт список
+	onOpen?: () => void;		// callback на открытие
 	onClose?: () => void;		// callback на закрытие
 }
 
 const noop =()=>{};
 
-export function Dropdown(props: IDropdownProps) {
+export function Dropdown({button, children, isOpen, onOpen = noop, onClose = noop}: IDropdownProps) {
+	const [isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
 
-	const ref = useRef<HTMLDivElement>(null);
-	useEffect(()=>{
-		function handleDropClick(event: MouseEvent) {
-			if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-				props.onClose?.();
-			}
+	React.useEffect(()=>setIsDropdownOpen(isOpen),[isOpen]);
+	React.useEffect(()=> isDropdownOpen ? onOpen() : onClose(),[isDropdownOpen]);
+
+	
+	const handleOpen = ()=>{
+		if (isOpen === undefined) {
+			setIsDropdownOpen(!isDropdownOpen)
 		}
-
-		document.addEventListener('click',handleDropClick);
-		return ()=> {
-			document.removeEventListener('click', handleDropClick);
-		}
-	},[]);
-
-	const node = document.querySelector('#modal_root');
-	if (!node) return null;	
-
-	return ReactDOM.createPortal(
-		<div className={styles.container} ref={ref} >
+	}
+	return (
+		<div className={styles.container} >
+			{/* handler на переключение объекта */}
+			<div onClick={handleOpen}>
+				{ button }
+			</div>
+			{isDropdownOpen && (
 				<div className={styles.listContainer}>
-					<div className={styles.list} >
-						{props.children}
+					<div className={styles.list} onClick={()=> setIsDropdownOpen(false)}>
+						{children}
 					</div>
 				</div>
-		</div>, node
+			)}
+		</div>
+
 	);
 }

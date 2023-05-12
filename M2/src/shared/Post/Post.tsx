@@ -2,13 +2,23 @@ import React, {useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import styles from './post.css';
 import { CommentForm } from '../CommentForm';
+import parse from "html-react-parser";
+import Remarkable from 'react-remarkable';
+//import { CommentsContextProvider } from '../context/commentsContext'
+import { CommentsLst } from '../CommentsLst';
+
+
 
 interface IPost {
+	id: string;
+	subreddit: string;
+	title: string;
+	selftext: string;
 	onClose?:() => void;
 }
 
 export function Post(props: IPost) {
-
+	
 	const ref = useRef<HTMLDivElement>(null);
 
 	function handleClick(event: MouseEvent) {
@@ -32,14 +42,17 @@ export function Post(props: IPost) {
 
 	return ReactDOM.createPortal( (
 		<div className={styles.modal} ref={ref}>
-			<h2>В таблице перечислены горячие клавиши по умолчанию</h2>
+			<h2>{props.id}  {props.title}</h2>
 			<div className={styles.content}>
-				<p>таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</p>
-				<p>таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</p>
-				<p>таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</p>
-				<p>таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</p>
-				<p>таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</p>
+			 <Remarkable>  
+				{parse(props.selftext)}
+			 </Remarkable> 
+				
 			</div>
+			
+
+				  <CommentsLst postId={props.id} subreddit={props.subreddit}/>  
+			
 			<CommentForm/>
 		</div>
 	), node );

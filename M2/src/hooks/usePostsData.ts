@@ -35,7 +35,7 @@ export function usePostsData() {
 		})
 		.then((resp)=> {
 			const data = resp.data.data.children;
-			console.log(data);
+			//console.log(data);
 			
 			setData({ postsData: data });
 		})

@@ -9,10 +9,12 @@ import { timeDiff } from '../../../utils/js/timeDiff';
 import moment from 'moment';
 moment.locale('ru');
 
+interface ICardProps_ {
+	id: string;
+	subreddit: string;
+}
 
-export function Card_() {
-	const dataStr:any= timeDiff(1681815326000);
-	console.log(dataStr);
+export function Card_({id, subreddit}:ICardProps_) {
 	
 	const userName ='userName';
 	const MENULIST = [
@@ -24,7 +26,7 @@ export function Card_() {
 	return (
 			<li className={styles.card}>
 				
-		<TextContent published={moment(1682330917605).fromNow()} userNameProp={userName} />
+		<TextContent subreddit={subreddit} id={id} published={moment(1682330917605).fromNow()} userNameProp={userName} />
 		<Preview/>	
 	 	<Menu menuList={MENULIST}/>
 		<Controls/>

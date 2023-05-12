@@ -15,12 +15,20 @@ export function CardsList() {
 		<ul className={styles.cardsList}>
 		{postsData && postsData.map(
 			(item:any)=>(
-				<Card key={item.data.id} id={item.data.id} author={item.data.author} image={item.data.thumbnail} title={item.data.title} avatar={item.data.sr_detail.icon_img} created={item.data.created} permalink={item.data.permalink} />
+				
+				<Card subreddit={item.data.subreddit} key={item.data.id} id={item.data.id} author={item.data.author} image={item.data.thumbnail} title={item.data.title} avatar={item.data.sr_detail.icon_img} created={item.data.created} permalink={item.data.permalink} selftext={item.data.selftext_html?item.data.selftext:" "} />
 		)
 		)}
 		{!postsData && (
 			<div>
-				<Card_ />
+				<Card_ subreddit="travel" id="1" />
+				 <Card_ subreddit="travel" id="2"/>
+				 <Card_ subreddit="travel" id="3" />
+				 <Card_ subreddit="travel" id="4" />
+				 <Card_ subreddit="travel" id="5" />
+				 <Card_ subreddit="travel" id="6" />
+				 <Card_ subreddit="travel" id="7" />
+				<Card_ subreddit="travel" id="8" />{/* */}
 				{/* <TestContent/> */}
 			</div>
 		)}   
