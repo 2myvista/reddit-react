@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import styles from './post.css';
 import { CommentForm } from '../CommentForm';
 import parse from "html-react-parser";
-import Remarkable from 'react-remarkable';
+import renderHTML from 'react-render-html';
+
 //import { CommentsContextProvider } from '../context/commentsContext'
 import { CommentsLst } from '../CommentsLst';
 
@@ -44,14 +45,13 @@ export function Post(props: IPost) {
 		<div className={styles.modal} ref={ref}>
 			<h2>{props.id}  {props.title}</h2>
 			<div className={styles.content}>
-			 <Remarkable>  
-				{parse(props.selftext)}
-			 </Remarkable> 
+			{renderHTML(parse(props.selftext))}
+					{/* {parse(props.selftext)} */}
 				
+				<CommentsLst postId={props.id} subreddit={props.subreddit}/>  
 			</div>
 			
 
-				  <CommentsLst postId={props.id} subreddit={props.subreddit}/>  
 			
 			<CommentForm/>
 		</div>

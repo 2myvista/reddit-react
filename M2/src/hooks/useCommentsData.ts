@@ -2,12 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Console, log } from "console";
 import { tokenContext } from "../shared/context/tokenContext";
+import parse from "html-react-parser";
+import moment from 'moment';
+moment.locale('ru');
 
 interface ICommentsData {
 	id?: string;
 	author?: string;
-	created?: string;
-	text?: string;
+	created?: any;
+	text?: any;
 }
 
 export function useCommentsData(id?:string, subreddit?:string) {
@@ -30,13 +33,15 @@ export function useCommentsData(id?:string, subreddit?:string) {
 
 				//console.log(currentComments);
 				const commentsData:ICommentsData[]=[];
-
+// const dataStr:any= moment(created*1000).fromNow();
 				for (let i = 0; i < (currentComments.length - 1); i++) {
+					const textData=parse(currentComments[i].body_html)
 					commentsData.push({
 						id: currentComments[i].id,
 						author: currentComments[i].author,
-						created: currentComments[i].created,
+						created: moment(currentComments[i].created*1000).fromNow(),
 						text: currentComments[i].body_html,
+						//text: textData
 					})
 				};
 				setComments(  commentsData );
