@@ -21,25 +21,16 @@ export interface ICommentsData {
 
 
 export function CommentsLst({postId, subreddit }:ICommentsData) {
-
-	console.log(postId);
 	const commentsList = useCommentsData(postId, subreddit);
-	console.log(commentsList[0]);
-	//const list = 
-		
 	
-		
 	const list =  commentsList[0]?.map((item) => {
 		return <div key={item.id}> <p className={styles.userData}>{item.author},  {item.created}</p>
 		<div>{renderHTML(parse(item.text))}</div></div>; 
 	}); 
 
-	console.log(list)
 	return (
 		<div>
-			
-	{list}
-
+			{list}
 		</div>
 	);
 }
