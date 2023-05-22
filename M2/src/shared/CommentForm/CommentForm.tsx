@@ -1,22 +1,32 @@
-import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import styles from './commentform.css';
 import { commentContext } from '../context/commentContext';
+import { Console } from 'console';
 
-export function CommentForm() {
-	const {value, onChange} = useContext(commentContext);
-	
-	function handelChange(event: ChangeEvent<HTMLTextAreaElement>) {
-		onChange(event.target.value);
-	}
+interface iCommentDataProps {
+	user?: string
+}
+
+export function CommentForm({user}:iCommentDataProps) {
+	//const {value, onChange} = useContext(commentContext);
+	const [textData, setTextData] = useState(user+', ');
+	const textRef = useRef<HTMLTextAreaElement>(null);
+	useEffect (()=>{
+		textRef.current?.focus();
+	},[])
+
+	 function handelChange(event: ChangeEvent<HTMLTextAreaElement>) {
+		setTextData(event.target.value);
+	} 
 
 	function handleSubmit(event: FormEvent) {
 		event.preventDefault();
-		console.log(value);
+		console.log(textData);
 	}
 	
 	return (
 	<form className={styles.form} onSubmit={handleSubmit}>
-		<textarea className={styles.input} value={value} onChange={handelChange}/>
+		<textarea ref={textRef} className={styles.input} value={textData} onChange={handelChange}/> 
 		<button type="submit" className={styles.button}>Комментировать</button>
 	</form>	
   );

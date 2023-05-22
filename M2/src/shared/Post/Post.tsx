@@ -15,15 +15,16 @@ interface IPost {
 	subreddit: string;
 	title: string;
 	selftext: string;
+	userNameProp: string;
 	onClose?:() => void;
 }
 
 export function Post(props: IPost) {
+	//console.log(props);
 	
 	const ref = useRef<HTMLDivElement>(null);
 
 	function handleClick(event: MouseEvent) {
-		console.log(props);
 		
 		if (event.target instanceof Node && !ref.current?.contains(event.target)) {
 			props.onClose?.();
@@ -45,15 +46,11 @@ export function Post(props: IPost) {
 		<div className={styles.modal} ref={ref}>
 			<h2>{props.id}  {props.title}</h2>
 			<div className={styles.content}>
-			{renderHTML(parse(props.selftext))}
-					{/* {parse(props.selftext)} */}
+				{renderHTML(parse(props.selftext))}
 				
 				<CommentsLst postId={props.id} subreddit={props.subreddit}/>  
 			</div>
-			
-
-			
-			<CommentForm/>
+			<CommentForm user={props.userNameProp}/>
 		</div>
 	), node );
 }

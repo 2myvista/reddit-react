@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import styles from './textcontent.css';
 import { Post } from '../../../Post';
 
-
 interface ICardProps {
 	id: string;
 	subreddit: string;
@@ -16,7 +15,6 @@ interface ICardProps {
 
 export function TextContent({id, subreddit, userNameProp, title, published=10, avatar, permalink, selftext }:ICardProps) {
 	const [isModalOpened, setIsModalOpened]= useState(false);
-	
 	avatar = avatar? avatar: 'https://cdn.dribbble.com/users/877810/avatars/normal/bca2fa37b3bdbe545749e7903fb89dcd.png';
 	
   return (
@@ -34,11 +32,8 @@ export function TextContent({id, subreddit, userNameProp, title, published=10, a
 				<a href="#post-url"  onClick={()=>{
 				 setIsModalOpened(true); }} className={styles.postLink}>{title}</a>	
 			</h2>
-{/* 			<h2 className={styles.title}>
-				<a href="#post-url" onClick={()=>{ setIsModalOpened(true); }} className={styles.postLink}> таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</a>	
-			</h2> */}
 				{isModalOpened &&  (
-				<Post subreddit={subreddit} title={title} selftext={selftext} id={id} onClose={()=>{setIsModalOpened(false);}}/>
+				<Post userNameProp={userNameProp} subreddit={subreddit} title={title} selftext={selftext} id={id} onClose={()=>{setIsModalOpened(false);}}/>
 			)}	
 		</div>
   );

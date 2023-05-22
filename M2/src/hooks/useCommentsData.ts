@@ -33,15 +33,12 @@ export function useCommentsData(id?:string, subreddit?:string) {
 
 				//console.log(currentComments);
 				const commentsData:ICommentsData[]=[];
-// const dataStr:any= moment(created*1000).fromNow();
 				for (let i = 0; i < (currentComments.length - 1); i++) {
-					const textData=parse(currentComments[i].body_html)
 					commentsData.push({
 						id: currentComments[i].id,
 						author: currentComments[i].author,
 						created: moment(currentComments[i].created*1000).fromNow(),
 						text: currentComments[i].body_html,
-						//text: textData
 					})
 				};
 				setComments(  commentsData );
@@ -51,6 +48,5 @@ export function useCommentsData(id?:string, subreddit?:string) {
 			})
 	},[]
 	)
-	//console.log(comments)
 	return [comments]
 }

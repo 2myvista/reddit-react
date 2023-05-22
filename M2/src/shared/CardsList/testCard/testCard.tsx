@@ -26,7 +26,7 @@ export function Card_({id, subreddit}:ICardProps_) {
 	return (
 			<li className={styles.card}>
 				
-		<TextContent subreddit={subreddit} id={id} published={moment(1682330917605).fromNow()} userNameProp={userName} />
+		<TextContent subreddit={subreddit} id={id} published={moment(1682888917605).fromNow()} userNameProp={userName} />
 		<Preview/>	
 	 	<Menu menuList={MENULIST}/>
 		<Controls/>

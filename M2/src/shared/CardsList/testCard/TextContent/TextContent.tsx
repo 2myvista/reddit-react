@@ -28,7 +28,7 @@ export function TextContent({id, subreddit, userNameProp, published='два дн
 				<a href="#post-url" onClick={()=>{ setIsModalOpened(true); }} className={styles.postLink}>{id} таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</a>	
 			</h2>
 			{isModalOpened && (
-				<Post subreddit={subreddit} title='' selftext='' id={id} onClose={()=>{setIsModalOpened(false);}}/>
+				<Post userNameProp={userNameProp} subreddit={subreddit} title='' selftext='' id={id} onClose={()=>{setIsModalOpened(false);}}/>
 			)}	
 		</div>	
   );
