@@ -1,8 +1,8 @@
 import React from 'react';
-import { Break } from '../../Break';
+import { Break } from '../../UI/Break';
 import { EColor, Text } from '../../Text';
 import styles from './userblock.css';
-import { Icon } from '../../Icon';
+import { Icon } from '../../UI/Icon';
 
 interface IUserBlockProps {
 	avatarSrc?: string;

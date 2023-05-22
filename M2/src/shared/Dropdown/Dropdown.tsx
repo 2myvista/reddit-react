@@ -17,12 +17,16 @@ export function Dropdown({button, children, isOpen, onOpen = noop, onClose = noo
 	React.useEffect(()=>setIsDropdownOpen(isOpen),[isOpen]);
 	React.useEffect(()=> isDropdownOpen ? onOpen() : onClose(),[isDropdownOpen]);
 
-	
+	// const noder = document.querySelector('#modal_root');
+	/*if (!node) return null;	*/
+
 	const handleOpen = ()=>{
 		if (isOpen === undefined) {
 			setIsDropdownOpen(!isDropdownOpen)
 		}
 	}
+
+
 	return (
 		<div className={styles.container} >
 			{/* handler на переключение объекта */}

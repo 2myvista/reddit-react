@@ -1,0 +1,33 @@
+.card {
+	position: relative;
+	background-color: var(--white);
+	border-radius: 7px;
+	padding: 20px 20px 10px;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+@media all and (min-width: 1024px) {
+	.card {
+		background-color: transparent;
+		flex-flow: row nowrap;
+		/*max-height: 147px;*/
+		padding: 2px 40px;
+	}
+
+	.card>* {
+		flex: 0 0;
+	}
+
+	.card>*+* {
+		padding: 0;
+	}
+}
+
+@media all and (min-width: 1540px) {
+	.card {
+		padding: 20px 60px;
+		max-height: 147px;
+		cursor: pointer;
+	}
+}

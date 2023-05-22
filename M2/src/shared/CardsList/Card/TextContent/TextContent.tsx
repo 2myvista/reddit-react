@@ -1,20 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './textcontent.css';
-
+import { Post } from '../../../Post';
 
 interface ICardProps {
+	id: string;
+	subreddit: string;
 	userNameProp:string;
 	published?: number;
-	title?: string;
+	title: string;
 	avatar: string;
 	permalink: string;
+	selftext: string;
 }
 
-export function TextContent({userNameProp, title, published=10, avatar, permalink }:ICardProps) {
-	//console.log(avatar);
-	
+export function TextContent({id, subreddit, userNameProp, title, published=10, avatar, permalink, selftext }:ICardProps) {
+	const [isModalOpened, setIsModalOpened]= useState(false);
 	avatar = avatar? avatar: 'https://cdn.dribbble.com/users/877810/avatars/normal/bca2fa37b3bdbe545749e7903fb89dcd.png';
-	const url = 'https://www.reddit.com'+ permalink;
+	
   return (
 		<div className={styles.textContent} >
 			<div className={styles.metaData} >
@@ -24,11 +26,15 @@ export function TextContent({userNameProp, title, published=10, avatar, permalin
 				</div>
 				<span className={styles.createdAt}>
 					<span className={styles.publishedLabel}>опубликовано </span>
-					{published}назад</span>
+					{published}</span>
 			</div>
 			<h2 className={styles.title}>
-				<a target="_blank" href={url} className={styles.postLink}>{title}</a>	
-			</h2>	
+				<a href="#post-url"  onClick={()=>{
+				 setIsModalOpened(true); }} className={styles.postLink}>{title}</a>	
+			</h2>
+				{isModalOpened &&  (
+				<Post userNameProp={userNameProp} subreddit={subreddit} title={title} selftext={selftext} id={id} onClose={()=>{setIsModalOpened(false);}}/>
+			)}	
 		</div>
   );
 }

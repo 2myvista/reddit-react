@@ -4,35 +4,39 @@ import { TextContent } from './TextContent';
 import { Preview } from './Preview'; 
 import { Menu } from './Menu'; 
 import { Controls } from './Controls';
-import { generateRandomString } from '../../../utils/react/generateRandomIndex';
-import { timeDiff } from '../../../utils/js/timeDiff';
+import { generateId } from '../../../utils/react/generateRandomIndex';
+import moment from 'moment';
+moment.locale('ru');
+//import { timeDiff } from '../../../utils/js/timeDiff';
 
 interface IPostsItems {
 	id:	string;
+	subreddit: string;
+
 	author: string;
 	title: string;
 	image: string;
 	permalink: string;
-	selftext?: string;
+	selftext: string;
 	selftext_html?: string;
 	avatar: string;
 	created: number;
 }
 
 
-export function Card({id, author, title, image, permalink, avatar, created }:IPostsItems) {
+export function Card({id, subreddit, author, title, image, permalink, avatar, created, selftext }:IPostsItems) {
 	
-	const dataStr:any= timeDiff(created*1000);
+	const dataStr:any= moment(created*1000).fromNow();
 	
 	const MENULIST = [
 		{As: 'li' as const, text: 'Комментарии', href: 'url1'},
 		{As: 'li' as const, text: 'Поделиться', href: 'url2'},
 		{As: 'li' as const, text: 'Сохранить', href: 'url3'},
-	].map((item)=>({...item, id: generateRandomString() }))
+	].map(generateId)
 		
 	return (
 		<li className={styles.card}>
-			<TextContent  published={dataStr.summary} title={title} userNameProp={author} avatar={avatar} permalink={permalink} />
+			<TextContent subreddit={subreddit} id={id} selftext={selftext}  published={dataStr} title={title} userNameProp={author} avatar={avatar} permalink={permalink} />
 			<Preview image={image} />	
 			<Menu menuList={MENULIST}/>
 			<Controls/>

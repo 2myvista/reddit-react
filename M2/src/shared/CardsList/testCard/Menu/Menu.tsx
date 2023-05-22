@@ -49,8 +49,38 @@ export function Menu({isOpen=false, menuList, onOpen=noop, onClose=noop}:ImenuLi
 		const modalRootPosY = Number(document.getElementById('modal_root')?.getBoundingClientRect().y);
 		const posTop  = Number(e.target.getBoundingClientRect().y) - modalRootPosY;
 		const posRight   = Number(e.target.getBoundingClientRect().x)-146;
+
+		/* console.log('---+++++++');
+		console.log(curPosition);*/
+		/* console.log(e.target.getBoundingClientRect());
+		console.log('---'); */
+
+		//const posRight   = e.screenX;
+	/*	console.log(document.getElementById('modal_root')?.getBoundingClientRect()); */
+		//const [modalRootPosY, setModalRootPosY] = useState(0); 
+
+		//modalRootPosY = Number(modalRootPosY)-window.pageYOffset;
+		//modalRootPosY = Number(modalRootPosY);
+		//console.log('modalRootPosY: ' + modalRootPosY);
+		//console.log('YOffset: ' + window.pageYOffset);
+		
+		/* console.log(e);
+		console.log(e.view.screen); */
+		//console.log('curPosition?.y (' + e.target.getBoundingClientRect().y +') - modalRootPosY ('+modalRootPosY+')');
+		
+		//console.log('curPosition.x: '+ curPosition?.x+' curPosition.y: '+ curPosition?.y+' e.pageX '+e.pageX + ' - e.pageY '+ e.pageY + ' - e.screenX '+ e.screenX+ ' - e.screenY '+ e.screenY);
+		//const posTop  = Number(curPosition?.y);
+		//const posTop  = -900;
+		//console.log('posTop ' + posTop);
+		//posTop  = Number(curPosition?.top);
+		//let posLeft =0;
+		
+		//const posRight   = e.pageX-160;
+		//posRight   = Number(curPosition?.x);
+		//console.log(posRight);
 		
 		setDropDownPosition({top: posTop, right: posRight})
+		
 	}	
   return (
 		<div className={styles.menu}>

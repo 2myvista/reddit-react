@@ -4,7 +4,7 @@ export const generateRandomString = () =>{ return Math.random().toString(36).sub
 
 export const assignId = assoc('id', generateRandomString());
 
-export const generateId = <O extends object>(obj: O) => assoc('id', generateRandomString());
+export const generateId = <O extends object>(obj: O) => assoc('id', generateRandomString())(obj);
 // export const generateId = <O extends object>(obj: O) => {
 //     console.log(obj);
     
