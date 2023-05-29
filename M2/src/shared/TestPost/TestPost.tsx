@@ -1,14 +1,13 @@
 import React, {useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
-import styles from './post.css';
+import styles from './testpost.css';
 import parse from "html-react-parser";
 import renderHTML from 'react-render-html';
 
-//import { CommentsContextProvider } from '../context/commentsContext'
-import { CommentForm } from '../CommentForm';
 import { CommentsLst } from '../CommentsLst';
+import { TestCommentFormContainer } from '../CommentFormContainer';
 
-
+//import { CommentsContextProvider } from '../context/commentsContext'
 
 interface IPost {
 	id: string;
@@ -19,9 +18,7 @@ interface IPost {
 	onClose?:() => void;
 }
 
-export function Post(props: IPost) {
-	//console.log(props);
-	
+export function TestPost(props: IPost) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	function handleClick(event: MouseEvent) {
@@ -50,7 +47,7 @@ export function Post(props: IPost) {
 				<hr/>
 				<CommentsLst postId={props.id} subreddit={props.subreddit}/>  
 			</div>
-			<CommentForm user={props.userNameProp}/>
+			<TestCommentFormContainer user={props.userNameProp}/>
 		</div>
 	), node );
 }

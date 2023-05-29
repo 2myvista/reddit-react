@@ -11,12 +11,14 @@ moment.locale('ru');
 
 interface ICardProps_ {
 	id: string;
+	title: string;
 	subreddit: string;
+	selfText: string;
+	author: string;
 }
 
-export function Card_({id, subreddit}:ICardProps_) {
+export function Card_({id, subreddit, selfText, title, author}:ICardProps_) {
 	
-	const userName ='userName';
 	const MENULIST = [
 		{As: 'li' as const, text: 'Комментарии', href: 'url1'},
 		{As: 'li' as const, text: 'Поделиться', href: 'url2'},
@@ -26,7 +28,7 @@ export function Card_({id, subreddit}:ICardProps_) {
 	return (
 			<li className={styles.card}>
 				
-		<TextContent subreddit={subreddit} id={id} published={moment(1682888917605).fromNow()} userNameProp={userName} />
+		<TextContent title={title} selftext={selfText} subreddit={subreddit} id={id} published={moment(1682888917605).fromNow()} userNameProp={author} />
 		<Preview/>	
 	 	<Menu menuList={MENULIST}/>
 		<Controls/>

@@ -4,7 +4,7 @@ import { Dropdown } from '../../../UI/Dropdown';
 import { GenericList } from '../../../UI/GenericList';
 import {merge} from './../../../../utils/js/merge';
 import { MenuIcon } from '../../../UI/Icon/MenuIcon';
-import { Text, EColor } from '../../../Text';
+import { Text, EColor } from '../../../UI/Text';
 import {MenuItemsList} from './MenuItemsList';
 import { log } from 'console';
 

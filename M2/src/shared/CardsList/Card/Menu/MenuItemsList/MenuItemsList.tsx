@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, EIcon } from '../../../../UI/Icon';
-import { EColor, Text } from '../../../../Text';
+import { EColor, Text } from '../../../../UI/Text';
 import styles from './menuitemslist.css';
 
 interface IMenuItemsListProps {

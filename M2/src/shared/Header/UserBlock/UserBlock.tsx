@@ -1,6 +1,6 @@
 import React from 'react';
 import { Break } from '../../UI/Break';
-import { EColor, Text } from '../../Text';
+import { EColor, Text } from '../../UI/Text';
 import styles from './userblock.css';
 import { Icon } from '../../UI/Icon';
 

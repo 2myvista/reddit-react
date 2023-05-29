@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import styles from './dropdown.css';
 
 interface IDropdownProps {
-	posTop: number;
-	posLeft: number;
+	posTop?: number;
+	posLeft?: number;
 	children: React.ReactNode;  // то, что будем выводить
-	//onOpen?: () => void;		// callback на открытие
+	onOpen?: () => void;		// callback на открытие
 	onClose?: () => void;		// callback на закрытие
+	button?: React.ReactNode;
 }
 
 const noop =()=>{};

@@ -10,6 +10,7 @@ interface iCommentDataProps {
 export function CommentForm({user}:iCommentDataProps) {
 	//const {value, onChange} = useContext(commentContext);
 	const [textData, setTextData] = useState(user+', ');
+	
 	const textRef = useRef<HTMLTextAreaElement>(null);
 	useEffect (()=>{
 		textRef.current?.focus();
