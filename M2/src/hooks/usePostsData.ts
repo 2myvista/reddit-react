@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { log } from "console";
-import { tokenContext } from "../shared/context/tokenContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store/store";
 
 interface IPostsData {
 	postsData?: any;
@@ -23,12 +24,9 @@ interface IPostsProps {
 
 export function usePostsData() {
 	const [data, setData] = useState<IPostsData>({});
-	const token = useContext(tokenContext)
-	
+	const token = useSelector<RootState,string>(state=>state.token);
 
 	useEffect(() => {
-		console.log(token);
-		
 		if ( token!== '' && token != 'undefined' ) {
 		axios.get('https://oauth.reddit.com/best.json?sr_detail=true',{
 			headers: {Authorization: `bearer ${token}`}

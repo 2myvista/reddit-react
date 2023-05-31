@@ -7,13 +7,13 @@ import { Header } from './shared/Header';
 import { CardsList } from './shared/CardsList';
 import { TestContent } from './shared/CardsList/testCard/TestContent';
 import { useToken } from './hooks/useToken';
-//import { tokenContext } from './shared/context/tokenContext';
 import { UserContextProvider } from './shared/context/userContext';
 import { PostsContextProvider } from './shared/context/postsContext'; 
 import { createStore} from 'redux'
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { type } from 'os';
+//import { rootReducer } from './redux/store/store';
 import { rootReducer, setToken } from './redux/store/store';
 import { useDispatch } from 'react-redux';
 
@@ -23,17 +23,8 @@ const store =  createStore(rootReducer, composeWithDevTools());
 function AppComponent() {
 
 	//const [commentValue, setCommentValue] = useState('');
-	//const TokenProvider = tokenContext.Provider;
-
 	const [token] = useToken();
-	//console.log("token: "+token);
-	const dispatch = useDispatch();
-
-	useEffect (()=>{
-		if(token) {
-			dispatch(setToken(token))
-		}
-	}, [token])
+	console.log("token: "+token);
 
 	const upperCase = (str:string):string => {console.log(str); return str.toUpperCase()};
 	const exclaim = (str:string):string => `${str}!`;
@@ -42,8 +33,6 @@ function AppComponent() {
 	console.log(pipe('hello',  upperCase, exclaim,  repeat )); 
 
 	return (
-		<Provider store={store}>
-				{/* <TokenProvider value={token}> */}
 					<UserContextProvider>
 						<Layout>
 							<Header/>
@@ -52,9 +41,7 @@ function AppComponent() {
 							</PostsContextProvider>
 						</Layout>
 					</UserContextProvider>
-				{/* </TokenProvider> */}
-		</Provider>
 	);
 }
 
-export const App = hot(()=><AppComponent/>);
+export const App = hot(()=><Provider store={store}><AppComponent /></Provider>);

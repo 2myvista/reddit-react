@@ -4,18 +4,19 @@ import { log } from 'console';
 import { useCommentsData } from '../../hooks/useCommentsData';
 import parse from "html-react-parser";
 import renderHTML from 'react-render-html';
+import { CommentFormContainer } from '../CommentFormContainer';
 import { CommentForm } from '../CommentForm/CommentForm';
 
 export interface ICommentsData {
 	postId?: string;
 	subreddit?: string;
-	author?: string;
+	userNameProp?: string;
 	created?: string;
 	text?: string;
 }
 
 
-export function CommentsLst({postId, subreddit }:ICommentsData) {
+export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 	const commentsList = useCommentsData(postId, subreddit);
 
 	const [isCommentFormOpen, setIsCommentFormOpen] = useState<number>();
@@ -29,7 +30,7 @@ export function CommentsLst({postId, subreddit }:ICommentsData) {
 		<div>{renderHTML(parse(item.text))}</div>
 		<div onClick={()=>handleOpen(index)}>Комментарии</div>
 		{
-			isCommentFormOpen===index  && <CommentForm user={item.author}/>
+			isCommentFormOpen===index  && <CommentFormContainer user={userNameProp}/>
 		}
 		</div>; 
 	}); 

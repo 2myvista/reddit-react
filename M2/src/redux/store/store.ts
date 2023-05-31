@@ -23,7 +23,7 @@ export const updateComment: ActionCreator<AnyAction> = (text) => ({
 export const setToken: ActionCreator<AnyAction> = (text) => ({
 	type: SET_TOKEN,
 	text,
-});
+}); 
 
 export const rootReducer: Reducer<RootState> = (state = initialState, action) => {
 	switch (action.type) {
@@ -32,11 +32,11 @@ export const rootReducer: Reducer<RootState> = (state = initialState, action) =>
 				...state,
 				commentText: action.text,
 			};
-		case SET_TOKEN:
+		 case SET_TOKEN:
 			return {
 				...state,
 				token: window.__token__,
-			};
+			}; 
 		default:
 			return state;
 	}

@@ -3,13 +3,13 @@ import React, { ChangeEvent, FormEvent } from 'react';
 import { Console } from 'console';
 import { useStore, useSelector,useDispatch } from 'react-redux';
 import { RootState, updateComment } from '../../redux/store/store';
-import { TestCommentForm } from '../TestCommentForm';
+import { CommentForm } from '../CommentForm';
 
 interface iCommentDataProps {
 	user?: string
 }
 
-export function TestCommentFormContainer({user}:iCommentDataProps) {
+export function CommentFormContainer({user}:iCommentDataProps) {
 /*	обычный способ получения состояния из redux
 	const store = useStore<RootState>();
 	const value = store.getState().commentText;
@@ -28,6 +28,6 @@ export function TestCommentFormContainer({user}:iCommentDataProps) {
 	}
 	
 	return (
-        <TestCommentForm value={value} user={user} onChange={handelChange} onSubmit={handleSubmit} />
+        <CommentForm value={value} user={user} onChange={handelChange} onSubmit={handleSubmit} />
   );
 }

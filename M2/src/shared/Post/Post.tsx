@@ -5,8 +5,9 @@ import parse from "html-react-parser";
 import renderHTML from 'react-render-html';
 
 //import { CommentsContextProvider } from '../context/commentsContext'
-import { CommentForm } from '../CommentForm';
+//import { CommentForm } from '../CommentForm';
 import { CommentsLst } from '../CommentsLst';
+import { CommentFormContainer } from '../CommentFormContainer';
 
 
 
@@ -48,9 +49,9 @@ export function Post(props: IPost) {
 			<div className={styles.content}>
 				{renderHTML(parse(props.selftext))}
 				<hr/>
-				<CommentsLst postId={props.id} subreddit={props.subreddit}/>  
+				<CommentsLst postId={props.id} subreddit={props.subreddit} userNameProp={props.userNameProp}/>  
 			</div>
-			<CommentForm user={props.userNameProp}/>
+			 <CommentFormContainer user={props.userNameProp}/> 
 		</div>
 	), node );
 }

@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import renderHTML from 'react-render-html';
 
 import { CommentsLst } from '../CommentsLst';
-import { TestCommentFormContainer } from '../CommentFormContainer';
+import { CommentFormContainer } from '../CommentFormContainer';
 
 //import { CommentsContextProvider } from '../context/commentsContext'
 
@@ -47,7 +47,7 @@ export function TestPost(props: IPost) {
 				<hr/>
 				<CommentsLst postId={props.id} subreddit={props.subreddit}/>  
 			</div>
-			<TestCommentFormContainer user={props.userNameProp}/>
+			<CommentFormContainer user={props.userNameProp}/>
 		</div>
 	), node );
 }
