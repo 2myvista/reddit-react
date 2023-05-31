@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import styles from './textcontent.css';
-import { Post } from '../../../Post';
+import { TestPost } from '../../../TestPost';
+
 
 
 interface ICardProps {
 	id:string;
+	title:string;
 	subreddit: string;
 	userNameProp:string;
 	published?: string;
+	selftext: string;
 }
 
-export function TextContent({id, subreddit, userNameProp, published='два дня назад' }:ICardProps) {
+export function TextContent({id, subreddit, userNameProp, selftext, title, published='два дня назад' }:ICardProps) {
 	const [isModalOpened, setIsModalOpened]= useState(false);
 	return (
 	
@@ -25,11 +28,13 @@ export function TextContent({id, subreddit, userNameProp, published='два дн
 					{published}</span>
 			</div>
 			<h2 className={styles.title}>
-				<a href="#post-url" onClick={()=>{ setIsModalOpened(true); }} className={styles.postLink}>{id} таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</a>	
+				<a href="#post-url" onClick={()=>{ setIsModalOpened(true); }} className={styles.postLink}>{id} - {title} - таблице перечислены горячие клавиши по умолчанию, клавиши расширений, и перенастроенные.</a>	
 			</h2>
-			{isModalOpened && (
-				<Post userNameProp={userNameProp} subreddit={subreddit} title='' selftext='' id={id} onClose={()=>{setIsModalOpened(false);}}/>
-			)}	
+			
+			 {isModalOpened && (
+				
+				 <TestPost userNameProp={userNameProp} subreddit={subreddit} title={title} selftext={selftext} id={id} onClose={()=>{setIsModalOpened(false);}}/>
+			)} 	
 		</div>	
   );
 }

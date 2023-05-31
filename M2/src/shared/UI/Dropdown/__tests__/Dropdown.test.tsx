@@ -1,10 +1,10 @@
-/*import React from "react";
+import React from "react";
 import { shallow } from "enzyme";
 import { Dropdown } from "../Dropdown";
 
-describe('Drodown', ()=> {
+describe('Dropdown', ()=> {
 	test('should render', () => {
-		const wrapper = shallow(<Dropdown children={<div/>} button={<button/>}/>)
+		const wrapper = shallow(<Dropdown children={<div/>}  button={<button/>}/>)
 		expect(wrapper).toBeDefined();
 		console.log(wrapper.find('div.container').debug());
 		
@@ -13,8 +13,8 @@ describe('Drodown', ()=> {
 	})
 	
 	test('should render (snapshort)', ()=> {
-		const wrapper = shallow(<Dropdown children={<div/>} button={<button/>}/>)
+		const wrapper = shallow(<Dropdown children={<div/>} button={<button/>} />)
 
 		expect(wrapper).toMatchSnapshot()
 	})
-})*/
+})

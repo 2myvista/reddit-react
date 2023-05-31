@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './testcontent.css';
 
-import { Dropdown } from '../../../Dropdown';
+import { Dropdown } from '../../../UI/Dropdown';
 import { CardsList } from '../../CardsList';
 import { GenericList } from '../../../UI/GenericList';
 import { generateRandomString, generateId } from '../../../../utils/react/generateRandomIndex';
@@ -11,8 +11,8 @@ import { preventDefault } from '../../../../utils/react/preventDefault';
 import { MyHooks, useIsMounted } from '../../../../../examples/HooksExample';
 import { getValue } from '../../../../utils/react/pickFromSyntethicEvent';
 import { Break } from '../../../UI/Break';
-import { Text } from '../../../Text';
-import { EColor } from '../../../Text';
+import { Text } from '../../../UI/Text';
+import { EColor } from '../../../UI/Text';
 
 const LIST = [
 	{As: 'li' as const, text: 'some text'},
