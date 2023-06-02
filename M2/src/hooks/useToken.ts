@@ -5,11 +5,13 @@ import { RootState, setToken } from "../redux/store/store";
  export function useToken() {
 	const token = useSelector<RootState,string>(state=>state.token);
 	const dispatch = useDispatch();
-	useEffect(() => {
+	console.log(token);
+	
+	 useEffect(() => {
 		if (window.__token__) {
 			dispatch(setToken(window.__token__));
 		}
-	}, [])
+	}, []) 
 //console.log(token);
 
 	return [token]

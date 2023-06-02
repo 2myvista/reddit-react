@@ -35,7 +35,7 @@ export const rootReducer: Reducer<RootState> = (state = initialState, action) =>
 		 case SET_TOKEN:
 			return {
 				...state,
-				token: window.__token__,
+				token: action.text,
 			}; 
 		default:
 			return state;
