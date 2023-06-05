@@ -20,9 +20,9 @@ export const updateComment: ActionCreator<AnyAction> = (text) => ({
 	text,
 });
 
-export const setToken: ActionCreator<AnyAction> = (text) => ({
+export const setToken: ActionCreator<AnyAction> = (token) => ({
 	type: SET_TOKEN,
-	text,
+	payload: token,
 }); 
 
 export const rootReducer: Reducer<RootState> = (state = initialState, action) => {
@@ -35,7 +35,7 @@ export const rootReducer: Reducer<RootState> = (state = initialState, action) =>
 		 case SET_TOKEN:
 			return {
 				...state,
-				token: action.text,
+				token: action.payload,
 			}; 
 		default:
 			return state;
