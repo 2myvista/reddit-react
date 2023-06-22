@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { log } from "console";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store/store";
+import { RootState } from "../redux/store/reducer";
 
 interface IPostsData {
 	postsData?: any;

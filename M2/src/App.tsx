@@ -9,22 +9,35 @@ import { TestContent } from './shared/CardsList/testCard/TestContent';
 import { useToken } from './hooks/useToken';
 import { UserContextProvider } from './shared/context/userContext';
 import { PostsContextProvider } from './shared/context/postsContext'; 
-import { createStore} from 'redux'
 import { Provider } from 'react-redux';
+import { createStore, applyMiddleware} from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { type } from 'os';
 //import { rootReducer } from './redux/store/store';
-import { rootReducer, setToken } from './redux/store/store';
-import { useDispatch } from 'react-redux';
+import { rootReducer } from './redux/store/reducer';
+import { SET_TOKEN, setToken } from './redux/actions/token/actions'
+//import { useDispatch } from 'react-redux';
+import thunk from 'redux-thunk';
 
 
-const store =  createStore(rootReducer, composeWithDevTools());
+const store =  createStore(rootReducer, composeWithDevTools(
+	applyMiddleware(thunk)
+));
 
 function AppComponent() {
+	useEffect(()=>{
+		const token = localStorage.getItem('token') || window.__token__;
+	//	console.log(token);
+		
+		store.dispatch(setToken(token));
+		if (token && token!='undefined') {
+			localStorage.setItem('token', token);
+		}
+	})
 
 	//const [commentValue, setCommentValue] = useState('');
-	const [token] = useToken();
-	console.log("token: "+token);
+//	const [token] = useToken();
+//	console.log("token: "+token);
 
 	const upperCase = (str:string):string => {console.log(str); return str.toUpperCase()};
 	const exclaim = (str:string):string => `${str}!`;
