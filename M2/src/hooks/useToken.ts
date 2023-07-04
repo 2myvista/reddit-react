@@ -4,7 +4,7 @@ import { setToken } from "../redux/actions/token/actions";
 import { RootState } from "../redux/store/reducer";
 
  export function useToken() {
-	const token = useSelector<RootState,string>(state=>state.token);
+	const token = useSelector<RootState,string>(state=>state.token.token);
 	const dispatch = useDispatch();
 	console.log(token);
 	

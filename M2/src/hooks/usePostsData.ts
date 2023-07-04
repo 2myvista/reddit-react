@@ -24,7 +24,7 @@ interface IPostsProps {
 
 export function usePostsData() {
 	const [data, setData] = useState<IPostsData>({});
-	const token = useSelector<RootState,string>(state=>state.token);
+	const token = useSelector<RootState,string>(state=>state.token.token);
 
 	useEffect(() => {
 		if ( token!== '' && token != 'undefined' ) {

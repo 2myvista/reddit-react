@@ -1,13 +1,13 @@
 import { ActionCreator, Reducer } from "redux";
 import { ME_REQUEST, ME_REQUEST_ERROR, ME_REQUEST_SUCCESS, MeRequestAction, MeRequestErrorAction, MeRequestSuccessAction } from "./../../redux/actions/me/actions";
-import { SET_TOKEN, SetTokenAction } from './../actions/token/actions'
+import { SET_TOKEN, SetTokenAction } from './../actions/token/actions';
 import { type } from "os";
 import { MeState, meReducer } from "../reducers/me/reducer";
+import { TokenState, tokenReducer } from "../reducers/token/reducer";
 
 
 export type RootState = {
-	//user: string;
-	token: string;
+	token: TokenState;
 	commentText: string;
 	me: MeState;
 }
@@ -15,7 +15,9 @@ export type RootState = {
 const initialState: RootState = {
 	//user: 'user',
 	commentText: 'hello, world',
-	token: '',
+	token: {
+		token:'',
+	},
 	me: {
 		loading: false,
 		error: '',
@@ -50,7 +52,7 @@ export const rootReducer: Reducer<RootState> = (state = initialState, action) =>
 		case SET_TOKEN:
 			return {
 				...state,
-				token: action.token,
+				token: tokenReducer(state.token, action),
 			};
 		case ME_REQUEST:
 		case ME_REQUEST_SUCCESS:

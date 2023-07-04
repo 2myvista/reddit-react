@@ -25,7 +25,7 @@ const store =  createStore(rootReducer, composeWithDevTools(
 ));
 
 function AppComponent() {
-	useEffect(()=>{
+	/* useEffect(()=>{
 		const token = localStorage.getItem('token') || window.__token__;
 	//	console.log(token);
 		
@@ -33,10 +33,10 @@ function AppComponent() {
 		if (token && token!='undefined') {
 			localStorage.setItem('token', token);
 		}
-	})
+	}) */
 
 	//const [commentValue, setCommentValue] = useState('');
-//	const [token] = useToken();
+	const [token] = useToken();
 //	console.log("token: "+token);
 
 	const upperCase = (str:string):string => {console.log(str); return str.toUpperCase()};
