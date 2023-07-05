@@ -42,7 +42,7 @@ type MyAction = UpdateCommentAction
 | MeRequestSuccessAction
 | MeRequestErrorAction;
 
-export const rootReducer: Reducer<RootState> = (state = initialState, action) => {
+export const rootReducer: Reducer<any, MyAction> = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_COMMENT:
 			return {

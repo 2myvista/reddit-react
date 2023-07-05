@@ -15,8 +15,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { type } from 'os';
 //import { rootReducer } from './redux/store/store';
 import { rootReducer } from './redux/store/reducer';
-import { SET_TOKEN, setToken } from './redux/actions/token/actions'
-//import { useDispatch } from 'react-redux';
+import { SET_TOKEN, saveToken, setToken } from './redux/actions/token/actions'
+import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
 
 
@@ -25,18 +25,13 @@ const store =  createStore(rootReducer, composeWithDevTools(
 ));
 
 function AppComponent() {
-	/* useEffect(()=>{
-		const token = localStorage.getItem('token') || window.__token__;
-	//	console.log(token);
-		
-		store.dispatch(setToken(token));
-		if (token && token!='undefined') {
-			localStorage.setItem('token', token);
-		}
-	}) */
+	const dispatch = useDispatch();
+	useEffect(()=>{
+		dispatch<any>(saveToken())
+	}) 
 
 	//const [commentValue, setCommentValue] = useState('');
-	const [token] = useToken();
+//	const [token] = useToken();
 //	console.log("token: "+token);
 
 	const upperCase = (str:string):string => {console.log(str); return str.toUpperCase()};
