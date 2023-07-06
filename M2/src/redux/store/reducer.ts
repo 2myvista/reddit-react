@@ -13,8 +13,7 @@ export type RootState = {
 }
 
 const initialState: RootState = {
-	//user: 'user',
-	commentText: 'hello, world',
+	commentText: 'hello, react',
 	token: {
 		token:'',
 	},

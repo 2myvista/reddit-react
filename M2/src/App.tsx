@@ -5,7 +5,7 @@ import { Layout } from './shared/UI/Layout';
 import { Content } from './shared/Content';
 import { Header } from './shared/Header';
 import { CardsList } from './shared/CardsList';
-import { TestContent } from './shared/CardsList/testCard/TestContent';
+//import { TestContent } from './shared/CardsList/testCard/TestContent';
 import { useToken } from './hooks/useToken';
 import { UserContextProvider } from './shared/context/userContext';
 import { PostsContextProvider } from './shared/context/postsContext'; 
@@ -27,11 +27,12 @@ const store =  createStore(rootReducer, composeWithDevTools(
 function AppComponent() {
 	const dispatch = useDispatch();
 	useEffect(()=>{
+				
 		dispatch<any>(saveToken())
-	}) 
+	},[]) 
 
 	//const [commentValue, setCommentValue] = useState('');
-//	const [token] = useToken();
+	const [token] = useToken();
 //	console.log("token: "+token);
 
 	const upperCase = (str:string):string => {console.log(str); return str.toUpperCase()};
