@@ -32,7 +32,7 @@ function AppComponent() {
 	},[]) 
 
 	//const [commentValue, setCommentValue] = useState('');
-	const [token] = useToken();
+	//const [token] = useToken();
 //	console.log("token: "+token);
 
 	const upperCase = (str:string):string => {console.log(str); return str.toUpperCase()};
