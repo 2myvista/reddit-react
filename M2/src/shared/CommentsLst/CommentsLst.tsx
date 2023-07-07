@@ -18,6 +18,7 @@ export interface ICommentsData {
 
 export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 	const commentsList = useCommentsData(postId, subreddit);
+console.log(commentsList);
 
 	const [isCommentFormOpen, setIsCommentFormOpen] = useState<number>();
 	const handleOpen =(index:number) => {
