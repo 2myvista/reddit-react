@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent } from 'react';
 
 import { Console } from 'console';
 import { useStore, useSelector,useDispatch } from 'react-redux';
-import { RootState, updateComment } from '../../redux/store/store';
+import { RootState, updateComment } from '../../redux/store/reducer';
 import { CommentForm } from '../CommentForm';
 
 interface iCommentDataProps {

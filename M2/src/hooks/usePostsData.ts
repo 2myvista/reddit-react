@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { log } from "console";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store/store";
+import { RootState } from "../redux/store/reducer";
 
 interface IPostsData {
 	postsData?: any;
@@ -24,7 +24,7 @@ interface IPostsProps {
 
 export function usePostsData() {
 	const [data, setData] = useState<IPostsData>({});
-	const token = useSelector<RootState,string>(state=>state.token);
+	const token = useSelector<RootState,string>(state=>state.token.token);
 
 	useEffect(() => {
 		if ( token!== '' && token != 'undefined' ) {
