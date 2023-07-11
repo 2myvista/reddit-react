@@ -11,7 +11,7 @@ export type MeState = {
 
 type MeActions = MeRequestAction | MeRequestSuccessAction | MeRequestErrorAction;
 
-// MeActions - какие 'экшены редюсер принимает
+// MeActions - какие экшены редюсер принимает
 export const meReducer: Reducer<MeState, MeActions> = (state, action) => {
 	switch (action.type) {
 		case ME_REQUEST: 

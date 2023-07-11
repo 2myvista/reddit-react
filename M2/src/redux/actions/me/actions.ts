@@ -49,7 +49,7 @@ export const MeRequestError: ActionCreator<MeRequestErrorAction> = (error: strin
 
 export const MeRequestAsync = ():ThunkAction<void,RootState, unknown, Action<string>> => (dispatch, getState)=> {
 	const token = getState().token.token;
-	if (!getState().me.loading) {
+	if (token && token !== 'undefined') {
 		dispatch(MeRequest());
 		axios.get('https://oauth.reddit.com/api/v1/me',{
 			headers: {Authorization: `bearer ${getState().token.token}`}
