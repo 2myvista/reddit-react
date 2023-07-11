@@ -14,16 +14,10 @@ export function SearchBlock() {
 	
 	const loading = store.getState().me.loading;
 
-	console.log('searchblock:',loading);
-	
-	
-	//const {data, loading} = useUserData();
-
 	return (
 		<div className={styles.searchBlock}>
 			search block
 			<UserBlock avatarSrc={iconImg} userName={name}  loading={loading}/>
-			{/* <UserBlock avatarSrc={data.iconImg} userName={data.name} loading={loading}/> */}
 		</div>
 	);
 }

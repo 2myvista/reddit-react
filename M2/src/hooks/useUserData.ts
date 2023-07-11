@@ -20,7 +20,6 @@ export function useUserData() {
 		} 
 		dispatch<any>(MeRequestAsync());	
 	},[token])
-	console.log(loading);
 	
 	return {
 		data,
