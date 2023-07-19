@@ -28,6 +28,6 @@ export function CommentFormContainer({user}:iCommentDataProps) {
 	}
 	
 	return (
-        <CommentForm value={value} user={user} onChange={handelChange} onSubmit={handleSubmit} />
+        <CommentForm  />
   );
 }

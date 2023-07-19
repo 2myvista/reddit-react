@@ -29,7 +29,7 @@ console.log(commentsList);
 	const list =  commentsList[0]?.map((item, index) => {
 		return <div key={item.id}> <p className={styles.userData}> {item.author},  {item.created}  (id:{item.id})</p>
 		<div>{renderHTML(parse(item.text))}</div>
-		<div onClick={()=>handleOpen(index)}>Комментарии</div>
+		<label onClick={()=>handleOpen(index)}>Комментировать</label>
 		{
 			isCommentFormOpen===index  && <CommentFormContainer user={userNameProp}/>
 		}
