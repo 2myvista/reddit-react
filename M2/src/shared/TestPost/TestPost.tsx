@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import renderHTML from 'react-render-html';
 
 import { CommentsLst } from '../CommentsLst';
-import { CommentFormContainer } from '../CommentFormContainer';
+import { CommentFormContainer } from '../TestCommentFormContainer';
 
 //import { CommentsContextProvider } from '../context/commentsContext'
 

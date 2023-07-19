@@ -3,7 +3,7 @@ import React, { ChangeEvent, FormEvent } from 'react';
 import { Console } from 'console';
 import { useStore, useSelector,useDispatch } from 'react-redux';
 import { RootState, updateComment } from '../../redux/store/reducer';
-import { CommentForm } from '../CommentForm';
+import { CommentForm } from '../TestCommentForm';
 
 interface iCommentDataProps {
 	user?: string
@@ -28,6 +28,10 @@ export function CommentFormContainer({user}:iCommentDataProps) {
 	}
 	
 	return (
-        <CommentForm  />
+        /*<CommentForm 
+		 
+		 value={value} user={user} onChange={handelChange} onSubmit={handleSubmit} 
+		  /> */
+        <CommentForm />
   );
 }

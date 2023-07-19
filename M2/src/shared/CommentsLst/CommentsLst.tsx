@@ -18,6 +18,7 @@ export interface ICommentsData {
 
 export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 	const commentsList = useCommentsData(postId, subreddit);
+console.log(commentsList);
 
 	const [isCommentFormOpen, setIsCommentFormOpen] = useState<number>();
 	const handleOpen =(index:number) => {
@@ -28,7 +29,7 @@ export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 	const list =  commentsList[0]?.map((item, index) => {
 		return <div key={item.id}> <p className={styles.userData}> {item.author},  {item.created}  (id:{item.id})</p>
 		<div>{renderHTML(parse(item.text))}</div>
-		<div onClick={()=>handleOpen(index)}>Комментарии</div>
+		<label onClick={()=>handleOpen(index)}>Комментировать</label>
 		{
 			isCommentFormOpen===index  && <CommentFormContainer user={userNameProp}/>
 		}
