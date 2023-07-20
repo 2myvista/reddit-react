@@ -16,6 +16,7 @@ export function CommentForm() {
 		setValue,
 		handleSubmit,
 		formState: { errors },
+		
 	  } = useForm<Props>()
 	const onSubmit = handleSubmit((data) => {
 			console.log(data);
@@ -24,6 +25,11 @@ export function CommentForm() {
 			
 			dispatch(updateComment(data.comment))
 	})
+
+	function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+		console.log(event.target.value);
+		dispatch(updateComment(event.target.value))
+	}
 
 	const textRef = useRef<HTMLTextAreaElement>(null);
 	useEffect (()=>{
@@ -37,8 +43,8 @@ export function CommentForm() {
 	return (
 	<form className={styles.form} onSubmit={onSubmit}>
 		{/* 'ref' is specified more than once, so this usage will be overwritten. */}
-		<textarea  /*  ref={textRef} */  className={styles.input} {...register("comment", {required: true,  minLength: 6})}
-		aria-invalid={errors.comment ? "true" : undefined}
+		<textarea   /*  ref={textRef} */  className={styles.input} {...register("comment", {required: true,  minLength: 6})}
+		aria-invalid={errors.comment ? "true" : undefined} onChange={handleChange}
 		placeholder='заполните не менее 6 символов'/>
 		
 		{errors.comment?.type === "minLength" && (<div>минимум 6 символов</div>)}
