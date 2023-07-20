@@ -25,6 +25,12 @@ export function Post(props: IPost) {
 	
 	const ref = useRef<HTMLDivElement>(null);
 
+	function handleKeyboardPress (event: KeyboardEvent) {
+		if (event.code === 'Escape') {
+			props.onClose?.();
+		}
+	}
+
 	function handleClick(event: MouseEvent) {
 		
 		if (event.target instanceof Node && !ref.current?.contains(event.target)) {
@@ -34,8 +40,10 @@ export function Post(props: IPost) {
 
 	useEffect(()=>{
 		document.addEventListener('click',handleClick);
+		document.addEventListener('keydown',handleKeyboardPress);
 		return ()=> {
 			document.removeEventListener('click', handleClick);
+			document.removeEventListener('keydown',handleKeyboardPress);
 		}
 	},[]);
 
