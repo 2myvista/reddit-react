@@ -24,33 +24,35 @@ export function CardsList() {
 		setLoadButton(false);
 		setLoadCounter(0);
 	}
-	
-	useEffect(()=>{
-		async function load() {
-			setLoadCounter(0);
-			setLoading(true);
-			setErrorLoading('');
-			try {
-				if (token && token.length > 0 && token != "undefined") {
-					const {data: {data: {after, children}}} = await axios.get(bestUrl,{
-						headers: {Authorization: `bearer ${token}`},
-						params: {
-							limit:3,
-							sr_detail:1,
-							after: nextAfter,
-						}
-					});
-					setNextAfter(after);
-					// обращаемся к предыдущему состоянию стейта и добавляем туда вновь подгруженные данные
-					setPosts(prevChildren => prevChildren.concat(...children));
-				}
+
+	async function load() {
+		setLoadCounter(0);
+		setLoading(true);
+		setErrorLoading('');
+		try {
+			if (token && token.length > 0 && token != "undefined") {
+				const {data: {data: {after, children}}} = await axios.get(bestUrl,{
+					headers: {Authorization: `bearer ${token}`},
+					params: {
+						limit:10,
+						sr_detail:1,
+						after: nextAfter,
+					}
+				});
+				setNextAfter(after);
+				// обращаемся к предыдущему состоянию стейта и добавляем туда вновь подгруженные данные
+				setPosts(prevChildren => prevChildren.concat(...children));
 			}
-			catch (error) {
-				console.error(error);
-				setErrorLoading(String(error));
-			}
-			setLoading(false);
 		}
+		catch (error) {
+			console.error(error);
+			setErrorLoading(String(error));
+		}
+		setLoading(false);
+	}
+
+
+	useEffect(()=>{
 		const observer = new IntersectionObserver((entries)=>{
 			// для того, чтобы в IntersectionObserver(асинхронно наблюдает за пересечением элемента (target) с его родителем (root) или областью просмотра (viewport))
 			// не вызывался callback при его создании
@@ -63,7 +65,7 @@ export function CardsList() {
 						setLoadCounter(loadCounter+1);
 					}
 					else {
-							setLoadButton(true);
+						setLoadButton(true);
 					}
 				}
 				else {
