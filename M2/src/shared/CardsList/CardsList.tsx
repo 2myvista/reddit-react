@@ -5,54 +5,45 @@ import styles from './cardslist.css';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store/reducer';
 import { Icon } from '../UI/Icon';
-
 type token = {
 	token:string
 }
-
 export function CardsList() {
-	const token = useSelector<RootState>(state=>state.token.token);
+	const token = useSelector<RootState,string>(state=>state.token.token);
 	const [posts, setPosts] = useState<any[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [errorLoading, setErrorLoading] = useState('');
 	const [nextAfter, setNextAfter] = useState('');
 	const [loadCounter, setLoadCounter] = useState(0);
 	const [loadButton, setLoadButton] = useState(false);
-	const [continueLoad, setContinueLoad] = useState(false);
 	const [needButton, setNeedButton] = useState(true);
-
 	const bottomOfList = useRef<HTMLDivElement>(null);
-
 	const risingUrl = 'https://oauth.reddit.com/rising/';
 	const bestUrl = 'https://oauth.reddit.com/r/popular/best.json';
-
 	const handleOpen = ()=>{
-		console.log('nextAfter  после нажатия',nextAfter);
-		setContinueLoad(true);
-		setLoading(true);
 		setLoadButton(false);
-		console.log('установили loadButton после нажатия ', loadButton);
+		setLoadCounter(0);
 	}
 	
 	useEffect(()=>{
 		async function load() {
-			setContinueLoad(false);
+			setLoadCounter(0);
 			setLoading(true);
 			setErrorLoading('');
 			try {
-				console.log('nextAfter----',nextAfter);
-				const {data: {data: {after, children}}} = await axios.get(bestUrl,{
-					headers: {Authorization: `bearer ${token}`},
-					params: {
-						limit:2,
-						sr_detail:1,
-						after: nextAfter,
-					}
-				});
-				setNextAfter(after);
-				// обращаемся к предыдущему состоянию стейта и добавляем туда вновь подгруженные данные
-				setPosts(prevChildren => prevChildren.concat(...children));
-				
+				if (token && token.length > 0 && token != "undefined") {
+					const {data: {data: {after, children}}} = await axios.get(bestUrl,{
+						headers: {Authorization: `bearer ${token}`},
+						params: {
+							limit:3,
+							sr_detail:1,
+							after: nextAfter,
+						}
+					});
+					setNextAfter(after);
+					// обращаемся к предыдущему состоянию стейта и добавляем туда вновь подгруженные данные
+					setPosts(prevChildren => prevChildren.concat(...children));
+				}
 			}
 			catch (error) {
 				console.error(error);
@@ -60,48 +51,36 @@ export function CardsList() {
 			}
 			setLoading(false);
 		}
-
 		const observer = new IntersectionObserver((entries)=>{
 			// для того, чтобы в IntersectionObserver(асинхронно наблюдает за пересечением элемента (target) с его родителем (root) или областью просмотра (viewport))
 			// не вызывался callback при его создании
 			// entries - список всех наблюдаемых элементов, у которых(у каждого из них) можно посмотрить попадает или не попадает он(элемент) в область видимости
-			// и мы наблюдаем только за одним  элементом и если он видим isIntersecting = true, вызываем загрузку
+			// и мы наблюдаем только за одним элементом и если он видим isIntersecting = true, вызываем загрузку
 			if (entries[0].isIntersecting) {
-				setLoadCounter(loadCounter+1);
-				//console.log(loadCounter);
-				//console.log(loadButton);
-				
-				if (loadCounter % 3 === 0) {
-					console.log('loadCounter',loadCounter);
-					console.log('loadButton ',loadButton)
-					// если кнопка нужна
-					if (needButton) {
-						setLoadButton(true);
+				if(needButton) {
+					if (loadCounter < 3) {
+						load();
+						setLoadCounter(loadCounter+1);
 					}
-					console.log('установили loadButton ',loadButton);
-					
+					else {
+							setLoadButton(true);
+					}
 				}
-				if(!loadButton) {
-					console.log('загружаем');
-					
+				else {
 					load();
 				}
-				
-				
 			}
 		}, {rootMargin: '10px'},
 		);
 		if (bottomOfList.current) 	{
 			observer.observe(bottomOfList.current)
 		}
-
 		return () => {
 			if (bottomOfList.current) 	{
 				observer.unobserve(bottomOfList.current)
 			}	
 		}
-	},[bottomOfList.current, nextAfter, token, continueLoad])
-
+	},[bottomOfList.current, nextAfter, token, loadButton])
 	return (<>
 		<ul className={styles.cardsList}>
 			{posts.length === 0 && !loading && !errorLoading && (
@@ -121,27 +100,22 @@ export function CardsList() {
 					selftext={post.data.selftext_html?post.data.selftext_html:' '}
 				/>
 				//console.log(posts);
-				
 			))}
 			<div ref={bottomOfList}/>
-
 			{loading && <div style={{ textAlign: 'center' }}><Icon name='loading' size={50}/></div>}
-
 			{errorLoading && (
 				<div role="alert">{errorLoading}</div>
 			)
 				}
 			</ul>
-			{loadButton && <button  onClick={handleOpen}>продолжить</button>}</>
+			{loadButton && <button className={styles.moreBtn}  onClick={handleOpen}>загрузить еще...</button>}</>
 	);
 }
 /* import React, { useContext } from 'react';
 import { Card } from './Card';
 import styles from './cardslist.css';
 import { testCard } from './testCard';
-
 import { postsContext } from '../context/postsContext';
-
 export function CardsList() {
 	const {postsData} = useContext(postsContext);
 	//console.log(postsData);
@@ -168,12 +142,10 @@ interface IItems {
 	id:	string;
 	onClick: (id: string) => void;
 }
-
 interface IMyListProps {
 	list: IItems[];
 	
 }
-
 export function MyList({list}:IMyListProps) {
 	return (
 		<ul>
@@ -184,5 +156,4 @@ export function MyList({list}:IMyListProps) {
 		</ul>
 	)
 }
-
  */
