@@ -24,7 +24,7 @@ interface IPostsItems {
 }
 
 
-export function Card({id, subreddit, author, title, image, permalink, avatar, created, selftext }:IPostsItems) {
+export function Card({id='', subreddit='', author='', title='', image='', permalink='', avatar='', created=1, selftext='' }:IPostsItems) {
 	
 	const dataStr:any= moment(created*1000).fromNow();
 	

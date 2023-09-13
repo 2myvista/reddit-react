@@ -41,7 +41,7 @@ export function Icon({ name, size=14}: IIconProps) {
 			</svg>)
 			break;
 		case 'loading':
-			return (<svg width={size} height={size} viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+			return (<svg  width={size} height={size} viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
 			<defs>
 				<linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
 					<stop stopColor="#000" stopOpacity="0" offset="0%"/>

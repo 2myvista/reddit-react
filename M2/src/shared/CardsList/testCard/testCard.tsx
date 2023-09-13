@@ -17,7 +17,7 @@ interface ICardProps_ {
 	author: string;
 }
 
-export function Card_({id, subreddit, selfText, title, author}:ICardProps_) {
+export function testCard({id, subreddit, selfText, title, author}:ICardProps_) {
 	
 	const MENULIST = [
 		{As: 'li' as const, text: 'Комментарии', href: 'url1'},
