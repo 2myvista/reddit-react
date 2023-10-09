@@ -19,6 +19,7 @@ import { SET_TOKEN, saveToken, setToken } from './redux/actions/token/actions'
 import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
 
+import {BrowserRouter} from 'react-router-dom';
 
 const store =  createStore(rootReducer, composeWithDevTools(
 	applyMiddleware(thunk)
