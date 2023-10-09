@@ -24,7 +24,7 @@ interface IPost {
 export function Post(props: IPost) {
 	//console.log(props);
 	const params = useParams();
-	const id=params.id;
+	const postId=params.id;
 	const ref = useRef<HTMLDivElement>(null);
 
 	function handleKeyboardPress (event: KeyboardEvent) {
@@ -55,11 +55,11 @@ export function Post(props: IPost) {
 
 	return ReactDOM.createPortal( (
 		<div className={styles.modal} ref={ref}>
-			<h2>{props.title} (id: {id})</h2>
+			<h2>{props.title} (id: {postId})</h2>
 			<div className={styles.content}>
 				{/* {renderHTML(parse(props.selftext))} */}
 				<hr/>
-				<CommentsLst postId={id} subreddit={props.subreddit} userNameProp={props.userNameProp}/>  
+				<CommentsLst postId={postId} subreddit={props.subreddit} userNameProp={props.userNameProp}/>  
 			</div>
 			 <CommentFormContainer user={props.userNameProp}/> 
 		</div>
