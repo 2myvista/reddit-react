@@ -8,21 +8,23 @@ import renderHTML from 'react-render-html';
 //import { CommentForm } from '../CommentForm';
 import { CommentsLst } from '../CommentsLst';
 import { CommentFormContainer } from '../CommentFormContainer';
+import {useParams} from 'react-router-dom';
 
 
 
 interface IPost {
-	id: string;
-	subreddit: string;
-	title: string;
-	selftext: string;
-	userNameProp: string;
+	//id?: string;
+	subreddit?: string;
+	title?: string;
+	selftext?: string;
+	userNameProp?: string;
 	onClose?:() => void;
 }
 
 export function Post(props: IPost) {
 	//console.log(props);
-	
+	const params = useParams();
+	const id=params.id;
 	const ref = useRef<HTMLDivElement>(null);
 
 	function handleKeyboardPress (event: KeyboardEvent) {
@@ -53,11 +55,11 @@ export function Post(props: IPost) {
 
 	return ReactDOM.createPortal( (
 		<div className={styles.modal} ref={ref}>
-			<h2>{props.title} (id: {props.id})</h2>
+			<h2>{props.title} (id: {id})</h2>
 			<div className={styles.content}>
-				{renderHTML(parse(props.selftext))}
+				{/* {renderHTML(parse(props.selftext))} */}
 				<hr/>
-				<CommentsLst postId={props.id} subreddit={props.subreddit} userNameProp={props.userNameProp}/>  
+				<CommentsLst postId={id} subreddit={props.subreddit} userNameProp={props.userNameProp}/>  
 			</div>
 			 <CommentFormContainer user={props.userNameProp}/> 
 		</div>
