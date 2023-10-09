@@ -19,7 +19,7 @@ import { SET_TOKEN, saveToken, setToken } from './redux/actions/token/actions'
 import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 const store =  createStore(rootReducer, composeWithDevTools(
 	applyMiddleware(thunk)
@@ -28,9 +28,13 @@ const store =  createStore(rootReducer, composeWithDevTools(
 function AppComponent() {
 	const dispatch = useDispatch();
 	useEffect(()=>{
-				
 		dispatch<any>(saveToken())
-	},[]) 
+	},[])
+	
+	const [mounted, setMounted] = useState(false);
+	useEffect(()=> {
+		setMounted(true);
+	}, [])
 
 	//const [commentValue, setCommentValue] = useState('');
 	//const [token] = useToken();
@@ -44,12 +48,16 @@ function AppComponent() {
 
 	return (
 					<UserContextProvider>
-						<Layout>
-							<Header/>
-							<PostsContextProvider>
-								<CardsList />
-							</PostsContextProvider>
-						</Layout>
+						{mounted && (
+							<BrowserRouter>
+								<Layout>
+									<Header/>
+									<PostsContextProvider>
+										<CardsList />
+									</PostsContextProvider>
+								</Layout>
+							</BrowserRouter>
+						)}
 					</UserContextProvider>
 	);
 }
