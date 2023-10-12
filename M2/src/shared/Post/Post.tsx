@@ -9,6 +9,7 @@ import renderHTML from 'react-render-html';
 import { CommentsLst } from '../CommentsLst';
 import { CommentFormContainer } from '../CommentFormContainer';
 import {useParams} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -26,17 +27,18 @@ export function Post(props: IPost) {
 	const params = useParams();
 	const postId=params.id;
 	const ref = useRef<HTMLDivElement>(null);
+	const navigate = useNavigate();
 
 	function handleKeyboardPress (event: KeyboardEvent) {
 		if (event.code === 'Escape') {
-			props.onClose?.();
+			navigate('/');
 		}
 	}
-
+	
 	function handleClick(event: MouseEvent) {
 		
 		if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-			props.onClose?.();
+			navigate('/');
 		}
 	}
 

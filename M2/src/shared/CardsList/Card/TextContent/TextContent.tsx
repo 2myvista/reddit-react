@@ -29,7 +29,7 @@ export function TextContent({id, subreddit, userNameProp, title, published=10, a
 					{published}</span>
 			</div>
 			<h2 className={styles.title}>
-				<Link to={`posts/${id}`}  className={styles.postLink}>{title}</Link>	
+				<Link to={`posts/${id}`}  className={styles.postLink}>{id} {title}</Link>	
 			</h2>
 			
 		</div>
