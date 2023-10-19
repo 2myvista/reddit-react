@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './textcontent.css';
 import { Post } from '../../../Post';
 import {Link} from 'react-router-dom';
@@ -16,6 +16,11 @@ interface ICardProps {
 
 export function TextContent({id, subreddit, userNameProp, title, published=10, avatar, permalink, selftext }:ICardProps) {
 	avatar = avatar? avatar: 'https://cdn.dribbble.com/users/877810/avatars/normal/bca2fa37b3bdbe545749e7903fb89dcd.png';
+
+	const handleClick = (e:any) => {
+		console.log(e.target.innerText);
+		
+	}
 	
   return (
 		<div className={styles.textContent} >
@@ -29,7 +34,7 @@ export function TextContent({id, subreddit, userNameProp, title, published=10, a
 					{published}</span>
 			</div>
 			<h2 className={styles.title}>
-				<Link to={`posts/${id}`}  className={styles.postLink}>{id} {title}</Link>	
+				<Link to={`/posts/${id}`} onClick={handleClick} className={styles.postLink}>{id} {title}</Link>	
 			</h2>
 			
 		</div>
