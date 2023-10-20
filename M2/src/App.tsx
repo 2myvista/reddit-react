@@ -22,6 +22,7 @@ import { Post } from './shared/Post';
 import {NotFound} from './shared/NotFound';
 
 import {BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
+import { LayoutCardsList } from './shared/UI/Layout/LayoutCardsList/LayoutCardsList';
 
 const store =  createStore(rootReducer, composeWithDevTools(
 	applyMiddleware(thunk)
@@ -57,13 +58,13 @@ function AppComponent() {
 									<PostsContextProvider>
 										{/* <CardsList />  */}
 										<Routes>
-											<Route path="/posts/" element={<CardsList /> }/>
-											<Route path="/posts/:id" element={<><CardsList /><Post/></>}/>
-											
 											<Route path="/auth" element={<Navigate to="/posts" />} />
 											<Route path="/" element={<Navigate to="/posts" />} />
+											<Route path="/posts/" element={<LayoutCardsList /> }>
+												<Route path=":id" element={<Post />}/>
+											</Route>
+											
 											<Route path="/*" element={<NotFound />} /> 
-											{/* <Route path="/" element={<CardsList />}/> */}
 										</Routes>
 									</PostsContextProvider>
 								</Layout>

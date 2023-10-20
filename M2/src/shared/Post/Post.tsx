@@ -23,7 +23,6 @@ interface IPost {
 }
 
 export function Post(props: IPost) {
-	//console.log(props);
 	const params = useParams();
 	const postId=params.id;
 	const ref = useRef<HTMLDivElement>(null);
@@ -31,14 +30,13 @@ export function Post(props: IPost) {
 
 	function handleKeyboardPress (event: KeyboardEvent) {
 		if (event.code === 'Escape') {
-			navigate('/');
+			navigate('/posts');
 		}
 	}
 	
 	function handleClick(event: MouseEvent) {
-		
 		if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-			navigate('/');
+			navigate('/posts');
 		}
 	}
 
