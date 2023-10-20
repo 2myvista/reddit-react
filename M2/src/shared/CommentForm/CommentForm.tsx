@@ -28,7 +28,7 @@ export function CommentForm() {
 			//alert(data.comment);
 			console.log(errors);
 			
-			dispatch(updateComment(data.comment))
+			dispatch(updateComment(data.comment));
 	})
 
 

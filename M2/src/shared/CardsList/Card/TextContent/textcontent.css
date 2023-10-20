@@ -27,6 +27,11 @@
 	margin: 0 7px 0 0;
 }
 
+.id {
+	display: inline-flex;
+	font-size: 12px;
+}
+
 .username {
 	color: var(--orange);
 	position: relative;

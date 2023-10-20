@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import styles from './textcontent.css';
 import { Post } from '../../../Post';
 import {Link} from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux';
+import { RootState, setTitle } from '../../../../redux/store/reducer';
 
 interface ICardProps {
 	id: string;
@@ -19,9 +21,12 @@ export function TextContent({id, subreddit, userNameProp, title, published=10, a
 
 	const handleClick = (e:any) => {
 		console.log(e.target.innerText);
+		dispatch(setTitle(e.target.innerText));
 		
 	}
-	
+
+	const dispatch = useDispatch();
+
   return (
 		<div className={styles.textContent} >
 			<div className={styles.metaData} >
@@ -34,12 +39,15 @@ export function TextContent({id, subreddit, userNameProp, title, published=10, a
 					{published}</span>
 			</div>
 			<h2 className={styles.title}>
-				<Link to={`/posts/${id}`} onClick={handleClick} className={styles.postLink}>{id} {title}</Link>	
+				<Link to={`/posts/${id}`} onClick={handleClick} className={styles.postLink}> {title}</Link><span className={styles.id}>{id}</span>	
 			</h2>
 			
 		</div>
   );
 }
+
+
+
 /* 09.10.23 before change
 export function TextContent({id, subreddit, userNameProp, title, published=10, avatar, permalink, selftext }:ICardProps) {
 	const [isModalOpened, setIsModalOpened]= useState(false);
