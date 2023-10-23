@@ -15,7 +15,7 @@ interface ICommentsData {
 }
 
 export function useCommentsData(id?:string, subreddit?:string) {
-	const [comments, setComments] = useState<ICommentsData[]>();
+		const [comments, setComments] = useState<ICommentsData[]>();
 	const token = useSelector<RootState, string>(state => state.token.token);
 	useEffect(() => {
 
@@ -24,7 +24,8 @@ export function useCommentsData(id?:string, subreddit?:string) {
 			})
 			.then((resp)=> {
 				// избавляемся от лишнего уровня вложенности data
-				const currentComments=resp.data[1].data.children.map((el: {data: {}}) => el.data)
+				// знак вопроса означает: выполнять если ответ пришел без ошибки
+				const currentComments=resp.data[1].data?.children.map((el: {data: {}}) => el.data)
 
 				/* const list =  [
 					{data: {name: 'Sam', email: 'somewhere@gmail.com'}},

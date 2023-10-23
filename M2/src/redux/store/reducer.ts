@@ -15,7 +15,7 @@ export type RootState = {
 
 const initialState: RootState = {
 	commentText: 'hello, react',
-	titleText: 'default title text',
+	titleText: '',
 	token: {
 		token:'',
 	},

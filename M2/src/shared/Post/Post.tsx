@@ -57,7 +57,9 @@ export function Post(props: IPost) {
 
 	return ReactDOM.createPortal( (
 		<div className={styles.modal} ref={ref}>
+			
 			<h2>{titleText} </h2>(id:{postId})
+			
 			<div className={styles.content}>
 				{/* {renderHTML(parse(props.selftext))} */}
 				<hr/>

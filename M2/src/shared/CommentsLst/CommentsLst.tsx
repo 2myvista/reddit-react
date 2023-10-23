@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './commentslst.css';
 import { log } from 'console';
 import { useCommentsData } from '../../hooks/useCommentsData';
@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 import renderHTML from 'react-render-html';
 import { CommentFormContainer } from '../CommentFormContainer';
 import { CommentForm } from '../CommentForm/CommentForm';
+import { Icon } from '../UI/Icon/Icon';
 
 export interface ICommentsData {
 	postId?: string;
@@ -18,7 +19,12 @@ export interface ICommentsData {
 
 export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 	const commentsList = useCommentsData(postId, subreddit);
-console.log(commentsList);
+	const [commentLoading, setCommentLoading] = useState(true);
+	console.log(commentsList);
+
+	useEffect (()=>{
+		setCommentLoading(false);
+	}, [commentsList]);
 
 	const [isCommentFormOpen, setIsCommentFormOpen] = useState<number>();
 	const handleOpen =(index:number) => {
@@ -38,6 +44,7 @@ console.log(commentsList);
 
 	return (
 		<div>
+			{commentLoading && <Icon name='loading' size={50}/>}
 			{list}
 		</div>
 	);
