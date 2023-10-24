@@ -52,5 +52,5 @@ export function useCommentsData(id?:string, subreddit?:string) {
 			})
 	},[]
 	)
-	return [comments]
+	return comments
 }

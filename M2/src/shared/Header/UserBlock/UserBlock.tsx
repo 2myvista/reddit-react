@@ -19,13 +19,13 @@ export function UserBlock({avatarSrc, userName, loading}:IUserBlockProps) {
 			{avatarSrc ? 
 			<img src={avatarSrc} alt="user avatar" className={styles.avatarImage}/>
 			:
-			<Icon name='avatar' size={50}/>
+			<Icon name='avatar' size={30}/>
 			}
 		</div>
 
 		<div className={styles.username}>
 			<Break size={12}/>
-			{loading ? ( <Icon name='loading' size={50}/>): (
+			{loading ? ( <Icon name='loading' size={30}/>): (
 			<Text size={14} color={userName? EColor.black : EColor.gray99}>{userName || 'Аноним'}</Text>)}
 		</div>
 	</a>

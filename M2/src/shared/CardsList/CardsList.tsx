@@ -106,7 +106,7 @@ export function CardsList() {
 				//console.log(posts);
 			))}
 			<div ref={bottomOfList}/>
-			{loading && <div style={{ textAlign: 'center' }}><Icon name='loading' size={50}/></div>}
+			{loading && <div style={{ textAlign: 'center' }}><Icon name='loading' size={30}/></div>}
 			{errorLoading && (
 				<div role="alert">{errorLoading}</div>
 			)

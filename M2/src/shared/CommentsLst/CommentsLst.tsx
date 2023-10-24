@@ -23,7 +23,9 @@ export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 	console.log(commentsList);
 
 	useEffect (()=>{
-		setCommentLoading(false);
+		if (commentsList?.length) {
+			setCommentLoading(false);
+		}
 	}, [commentsList]);
 
 	const [isCommentFormOpen, setIsCommentFormOpen] = useState<number>();
@@ -32,7 +34,7 @@ export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 		setIsCommentFormOpen( index);
 	}
 	
-	const list =  commentsList[0]?.map((item, index) => {
+	const list =  commentsList?.map((item, index) => {
 		return <div key={item.id}> <p className={styles.userData}> {item.author},  {item.created}  (id:{item.id})</p>
 		<div>{renderHTML(parse(item.text))}</div>
 		<label onClick={()=>handleOpen(index)}>Комментировать</label>
@@ -44,7 +46,7 @@ export function CommentsLst({postId, subreddit, userNameProp }:ICommentsData) {
 
 	return (
 		<div>
-			{commentLoading && <Icon name='loading' size={50}/>}
+			{commentLoading && <div style={{ textAlign: 'center' }}><Icon name='loading' size={30}/></div>}
 			{list}
 		</div>
 	);
