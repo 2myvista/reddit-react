@@ -35,7 +35,7 @@ export function CardsList() {
 					headers: {Authorization: `bearer ${token}`},
 					params: {
 						limit:10,
-						sr_detail:1,
+						sr_detail:true,
 						after: nextAfter,
 					}
 				});
@@ -61,8 +61,10 @@ export function CardsList() {
 			if (entries[0].isIntersecting) {
 				if(needButton) {
 					if (loadCounter < 3) {
-						load();
-						setLoadCounter(loadCounter+1);
+						if (!loading) {
+							load();
+							setLoadCounter(loadCounter+1);
+						}
 					}
 					else {
 						setLoadButton(true);
@@ -72,7 +74,7 @@ export function CardsList() {
 					load();
 				}
 			}
-		}, {rootMargin: '10px'},
+		}, {rootMargin: '50px', threshold: 0.5},
 		);
 		if (bottomOfList.current) 	{
 			observer.observe(bottomOfList.current)
@@ -82,7 +84,7 @@ export function CardsList() {
 				observer.unobserve(bottomOfList.current)
 			}	
 		}
-	},[bottomOfList.current, nextAfter, token, loadButton])
+	},[bottomOfList.current, nextAfter, token, loadButton, loading])
 	return (<>
 		<ul className={styles.cardsList}>
 			{posts.length === 0 && !loading && !errorLoading && (
@@ -104,7 +106,7 @@ export function CardsList() {
 				//console.log(posts);
 			))}
 			<div ref={bottomOfList}/>
-			{loading && <div style={{ textAlign: 'center' }}><Icon name='loading' size={50}/></div>}
+			{loading && <div style={{ textAlign: 'center' }}><Icon name='loading' size={30}/></div>}
 			{errorLoading && (
 				<div role="alert">{errorLoading}</div>
 			)

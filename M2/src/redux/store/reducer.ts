@@ -9,11 +9,13 @@ import { TokenState, tokenReducer } from "../reducers/token/reducer";
 export type RootState = {
 	token: TokenState;
 	commentText: string;
+	titleText: string;
 	me: MeState;
 }
 
 const initialState: RootState = {
 	commentText: 'hello, react',
+	titleText: '',
 	token: {
 		token:'',
 	},
@@ -35,11 +37,22 @@ export const updateComment: ActionCreator<UpdateCommentAction> = (text) => ({
 	text,
 });
 
+const SET_TITLE = 'SET_TITLE';
+type SetTitleAction = {
+	type: typeof SET_TITLE;
+	text: string;
+}
+export const setTitle: ActionCreator<SetTitleAction> = (text) => ({
+	type: SET_TITLE,
+	text,
+});
+
 type MyAction = UpdateCommentAction
 | SetTokenAction
 | MeRequestAction
 | MeRequestSuccessAction
-| MeRequestErrorAction;
+| MeRequestErrorAction
+| SetTitleAction;
 
 export const rootReducer: Reducer<any, MyAction> = (state = initialState, action) => {
 	switch (action.type) {
@@ -47,6 +60,11 @@ export const rootReducer: Reducer<any, MyAction> = (state = initialState, action
 			return {
 				...state,
 				commentText: action.text,
+			};
+		case SET_TITLE:
+			return {
+				...state,
+				titleText: action.text,
 			};
 		case SET_TOKEN:
 			return {

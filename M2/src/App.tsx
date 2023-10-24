@@ -18,7 +18,11 @@ import { rootReducer } from './redux/store/reducer';
 import { SET_TOKEN, saveToken, setToken } from './redux/actions/token/actions'
 import { useDispatch } from 'react-redux';
 import thunk from 'redux-thunk';
+import { Post } from './shared/Post';
+import {NotFound} from './shared/NotFound';
 
+import {BrowserRouter, Routes, Route, Link, Navigate} from 'react-router-dom';
+import { LayoutCardsList } from './shared/UI/Layout/LayoutCardsList/LayoutCardsList';
 
 const store =  createStore(rootReducer, composeWithDevTools(
 	applyMiddleware(thunk)
@@ -27,9 +31,13 @@ const store =  createStore(rootReducer, composeWithDevTools(
 function AppComponent() {
 	const dispatch = useDispatch();
 	useEffect(()=>{
-				
 		dispatch<any>(saveToken())
-	},[]) 
+	},[])
+	
+	const [mounted, setMounted] = useState(false);
+	useEffect(()=> {
+		setMounted(true);
+	}, [])
 
 	//const [commentValue, setCommentValue] = useState('');
 	//const [token] = useToken();
@@ -43,12 +51,25 @@ function AppComponent() {
 
 	return (
 					<UserContextProvider>
-						<Layout>
-							<Header/>
-							<PostsContextProvider>
-								<CardsList />
-							</PostsContextProvider>
-						</Layout>
+						{mounted && (
+							<BrowserRouter>
+								<Layout>
+									<Header/>
+									<PostsContextProvider>
+										{/* <CardsList />  */}
+										<Routes>
+											<Route path="/auth" element={<Navigate to="/posts" />} />
+											<Route path="/" element={<Navigate to="/posts" />} />
+											<Route path="/posts/" element={<LayoutCardsList /> }>
+												<Route path=":id" element={<Post />}/>
+											</Route>
+											
+											<Route path="/*" element={<NotFound />} /> 
+										</Routes>
+									</PostsContextProvider>
+								</Layout>
+							</BrowserRouter>
+						)}
 					</UserContextProvider>
 	);
 }

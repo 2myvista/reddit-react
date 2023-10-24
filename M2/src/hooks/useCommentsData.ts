@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
+import { RootState } from "../redux/store/reducer";
 import axios from "axios";
 import { Console, log } from "console";
 import parse from "html-react-parser";
 import moment from 'moment';
+import { useSelector } from "react-redux";
 moment.locale('ru');
 
 interface ICommentsData {
@@ -13,14 +15,17 @@ interface ICommentsData {
 }
 
 export function useCommentsData(id?:string, subreddit?:string) {
-	const [comments, setComments] = useState<ICommentsData[]>();
-	
+		const [comments, setComments] = useState<ICommentsData[]>();
+	const token = useSelector<RootState, string>(state => state.token.token);
 	useEffect(() => {
-			axios.get(`https://api.reddit.com/r/${subreddit}/comments/${id}`,//{
-			)
+
+			axios.get(`https://oauth.reddit.com/comments/${id}`,{
+				headers: {Authorization: `bearer ${token}`}
+			})
 			.then((resp)=> {
 				// избавляемся от лишнего уровня вложенности data
-				const currentComments=resp.data[1].data.children.map((el: {data: {}}) => el.data)
+				// знак вопроса означает: выполнять если ответ пришел без ошибки
+				const currentComments=resp.data[1].data?.children.map((el: {data: {}}) => el.data)
 
 				/* const list =  [
 					{data: {name: 'Sam', email: 'somewhere@gmail.com'}},
@@ -47,5 +52,5 @@ export function useCommentsData(id?:string, subreddit?:string) {
 			})
 	},[]
 	)
-	return [comments]
+	return comments
 }

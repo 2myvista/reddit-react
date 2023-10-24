@@ -8,33 +8,37 @@ import renderHTML from 'react-render-html';
 //import { CommentForm } from '../CommentForm';
 import { CommentsLst } from '../CommentsLst';
 import { CommentFormContainer } from '../CommentFormContainer';
-
+import {useParams} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store/reducer';
 
 
 interface IPost {
-	id: string;
-	subreddit: string;
-	title: string;
-	selftext: string;
-	userNameProp: string;
+	//id?: string;
+	subreddit?: string;
+	title?: string;
+	selftext?: string;
+	userNameProp?: string;
 	onClose?:() => void;
 }
 
 export function Post(props: IPost) {
-	//console.log(props);
-	
+	const params = useParams();
+	const postId=params.id;
 	const ref = useRef<HTMLDivElement>(null);
+	const navigate = useNavigate();
+	const titleText = useSelector<RootState,string>(state=>state.titleText);
 
 	function handleKeyboardPress (event: KeyboardEvent) {
 		if (event.code === 'Escape') {
-			props.onClose?.();
+			navigate('/posts');
 		}
 	}
 
 	function handleClick(event: MouseEvent) {
-		
 		if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-			props.onClose?.();
+			navigate('/posts');
 		}
 	}
 
@@ -53,11 +57,13 @@ export function Post(props: IPost) {
 
 	return ReactDOM.createPortal( (
 		<div className={styles.modal} ref={ref}>
-			<h2>{props.title} (id: {props.id})</h2>
+			
+			<h2>{titleText} </h2>(id:{postId})
+			
 			<div className={styles.content}>
-				{renderHTML(parse(props.selftext))}
+				{/* {renderHTML(parse(props.selftext))} */}
 				<hr/>
-				<CommentsLst postId={props.id} subreddit={props.subreddit} userNameProp={props.userNameProp}/>  
+				<CommentsLst postId={postId} subreddit={props.subreddit} userNameProp={props.userNameProp}/>  
 			</div>
 			 <CommentFormContainer user={props.userNameProp}/> 
 		</div>
