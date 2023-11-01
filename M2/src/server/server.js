@@ -3,18 +3,25 @@ import ReactDOM from 'react-dom/server';
 import { indexTemplate } from './indexTemplate';
 import {App} from '../App';
 import axios from 'axios';
-import { log } from 'console';
+import compression from 'compression';
+import helmet from 'helmet';
 
+const PORT = process.env.PORT || 3000;
 const app = express();
+app.use(compression());
+app.use(helmet({
+	contentSecurityPolicy: false,
+}
+))
 
 app.use('/static', express.static('./dist/client'));
 
 app.get('/auth', (req, res)=>{
 	axios.post(
 		'https://www.reddit.com/api/v1/access_token',
-		`grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+		`grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:${PORT}/auth`,
 		{
-			auth: {username:process.env.CLIENT_ID, password:'OLw49h6TXoLF7hXpv16ecuXK2Hji9g'},
+			auth: {username:process.env.CLIENT_ID, password:process.env.SECRET},
 			headers: {'Content-type' : 'application/x-www-form-urlencoded'}
 		}
 	)
@@ -34,6 +41,6 @@ app.get('*', (req, res)=>{
     );
 });
 
-app.listen(3000, () =>{
-    console.log('server started on 3000 port http://localhost:3000');
+app.listen(PORT, () =>{
+    console.log(`server started on ${PORT} port http://localhost:${PORT}`);
 })
